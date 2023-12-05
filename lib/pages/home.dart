@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
+import 'package:st_courier/pages/add_parcell.dart';
 import 'package:st_courier/pages/order_tracking.dart';
 
 class HomePage extends StatefulWidget {
@@ -71,7 +72,7 @@ class _HomePage extends State<HomePage> {
                   ),
                   ListTile(
                     onTap: () {
-                      Get.to(() => const OrderTrackingPage());
+                      Get.off(() => const AddParcellPage());
                     },
                     leading: const Icon(Icons.add),
                     title: const Text('Add Parcel'),
@@ -364,7 +365,7 @@ class _HomePage extends State<HomePage> {
 
           ],
         ),
-        const SizedBox(width: 20,),
+        const SizedBox(height: 12,),
         // Add more widget boxes as needed
       ],
     );
