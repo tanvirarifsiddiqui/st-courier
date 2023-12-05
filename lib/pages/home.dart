@@ -147,7 +147,7 @@ class _HomePage extends State<HomePage> {
         child: Scaffold(
             appBar: AppBar(
               title: const Text('Dashboard'),
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.blueGrey.shade500,
               leading: IconButton(
                 onPressed: _handleMenuButtonPressed,
                 icon: ValueListenableBuilder<AdvancedDrawerValue>(
@@ -307,7 +307,7 @@ class _HomePage extends State<HomePage> {
             const SizedBox(width: 12,),
 
             _cardModel(Icon(Icons.pending_actions,color: Colors.white), 'Pending Pickup', "5"),
-            const SizedBox(width: 12,),
+            // const SizedBox(width: 12,),
 
           ],
         ),
@@ -320,14 +320,14 @@ class _HomePage extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel(Icon(Icons.card_giftcard,color: Colors.white), 'Total Parcel', "608"),
+            _cardModel(Icon(Icons.fire_truck,color: Colors.white), 'Pending Delivery', "558"),
             const SizedBox(width: 12,),
 
-            _cardModel(Icon(Icons.cancel,color: Colors.white), 'Cancel Parcel', "4"),
+            _cardModel(Icon(Icons.done,color: Colors.white), 'Delivery Complete', "41"),
             const SizedBox(width: 12,),
 
-            _cardModel(Icon(Icons.pending_actions,color: Colors.white), 'Pending Pickup', "5"),
-            const SizedBox(width: 12,),
+            _cardModel(Icon(Icons.payments_rounded,color: Colors.white), 'Payment Complete', "21"),
+            // const SizedBox(width: 12,),
 
           ],
         ),
@@ -339,14 +339,14 @@ class _HomePage extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel(Icon(Icons.card_giftcard,color: Colors.white), 'Total Parcel', "608"),
+            _cardModel(Icon(Icons.card_giftcard,color: Colors.white), 'Return Parcel', "10"),
             const SizedBox(width: 12,),
 
-            _cardModel(Icon(Icons.cancel,color: Colors.white), 'Cancel Parcel', "4"),
+            _cardModel(Icon(Icons.assignment_returned_rounded,color: Colors.white), 'Return Complete', "41"),
             const SizedBox(width: 12,),
 
-            _cardModel(Icon(Icons.pending_actions,color: Colors.white), 'Pending Pickup', "5"),
-            const SizedBox(width: 12,),
+            _cardModel(Icon(Icons.payment,color: Colors.white,), 'Payment in Progress', "0"),
+            // const SizedBox(width: 12,),
 
           ],
         ),
@@ -356,19 +356,15 @@ class _HomePage extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel(Icon(Icons.cancel,color: Colors.white,), 'Cancel Parcel', "4"),
-            const SizedBox(width: 12,),
+            _cardModel(Icon(Icons.auto_awesome_mosaic_outlined,color: Colors.white,), 'Total Collect Amount', "31,551"),
+            const SizedBox(width: 29,),
 
-            _cardModel(Icon(Icons.pending_actions,color: Colors.white), 'Pending Pickup', "5"),
-            const SizedBox(width: 12,),
+            _cardModel(Icon(Icons.paid,color: Colors.white), 'Total Paid Amount', "20,532"),
+            // const SizedBox(width: 12,),
 
           ],
         ),
-
-        const SizedBox(
-          height: 12,
-        ),
-
+        const SizedBox(width: 20,),
         // Add more widget boxes as needed
       ],
     );
@@ -398,7 +394,7 @@ class _HomePage extends State<HomePage> {
               Text(
                 operation,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 19,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
@@ -409,7 +405,7 @@ class _HomePage extends State<HomePage> {
               Text(
                 number,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 17,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
