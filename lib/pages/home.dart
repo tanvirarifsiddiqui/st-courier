@@ -3,8 +3,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
-import 'package:st_courier/pages/add_parcell.dart';
-import 'package:st_courier/pages/order_tracking.dart';
+import 'package:st_courier/pages/covarage_area.dart';
+import 'package:st_courier/pages/delivery_list.dart';
+import 'package:st_courier/pages/parcel_list.dart';
+import 'package:st_courier/pages/payment_list.dart';
+import 'package:st_courier/pages/payment_request_list.dart';
+import 'package:st_courier/pages/pick_up_parcel_list.dart';
+import 'package:st_courier/pages/return_parcel_list.dart';
+import 'package:st_courier/pages/support.dart';
+import 'add_parcell.dart';
+import 'order_tracking.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,7 +33,7 @@ class _HomePage extends State<HomePage> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Colors.blueGrey, Colors.blueGrey.withOpacity(0.2)],
+              colors: [Colors.white, Colors.blue.shade900.withOpacity(0.7)],
             ),
           ),
         ),
@@ -34,6 +43,7 @@ class _HomePage extends State<HomePage> {
         animateChildDecoration: true,
         rtlOpening: false,
         // openScale: 1.0,
+        openRatio: .70,
         disabledGestures: false,
         childDecoration: const BoxDecoration(
           // NOTICE: Uncomment if you want to add shadow behind the page.
@@ -51,80 +61,93 @@ class _HomePage extends State<HomePage> {
             child: ListTileTheme(
               textColor: Colors.white,
               iconColor: Colors.white,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+              child: ListView(
+                // physics: AlwaysScrollableScrollPhysics(),
                 children: [
                   Container(
-                    width: 100.0,
-                    height: 100.0,
+                    width: 120.0,
+                    height: 120.0,
                     margin: const EdgeInsets.only(
                       top: 18.0,
                       bottom: 18.0,
                     ),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: const BoxDecoration(
-                      color: Colors.black26,
-                      shape: BoxShape.circle,
-                    ),
                     child: Image.asset(
-                      'assets/images/user.png',
+                      'assets/images/logo.png',
                     ),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const AddParcellPage());
                     },
-                    leading: const Icon(Icons.add),
+                    leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
                     title: const Text('Add Parcel'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.list_alt),
+                    onTap: () {
+                      Get.off(() => const ParcelListPage());
+                    },
+                    leading: Image.asset("assets/images/total_parcel_drawer.png",scale: 8,),
                     title: const Text('Parcel List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.track_changes),
+                    onTap: () {
+                      Get.off(() => const OrderTrackingPage());
+                    },
+                    leading: Image.asset("assets/images/waitingdelivery.png",scale: 6,),
                     title: const Text('Order Tracking'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.area_chart),
+                    onTap: () {
+                      Get.off(() => const CoverageAreaPage());
+                    },
+                    leading: Image.asset("assets/images/coverage.png",scale: 8,),
                     title: const Text('Coverage Area'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.payment),
+                    onTap: () {
+                      Get.off(() => const PaymentRequestListPage());
+                    },
+                    leading: Image.asset("assets/images/payment.png",scale: 8,),
                     title: const Text('Payment Request List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.payments),
+                    onTap: () {
+                      Get.off(() => const PaymentListPage());
+                    },
+                    leading: Image.asset("assets/images/payment.png",scale: 8,),
                     title: const Text('Payment List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.wheelchair_pickup),
+                    onTap: () {
+                      Get.off(() => const PickupParcelListPage());
+                    },
+                    leading: Image.asset("assets/images/pickup.png",scale: 8,),
                     title: const Text('Pickup Parcel List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.assignment_return),
+                    onTap: () {
+                      Get.off(() => const ReturnParcelListPage());
+                    },
+                    leading: Image.asset("assets/images/returnnev.png",scale: 8,),
                     title: const Text('Return Parcel List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.delivery_dining),
+                    onTap: () {
+                      Get.off(() => const DeliveryListPage());
+                    },
+                    leading: Image.asset("assets/images/complete.png",scale: 8,),
                     title: const Text('Delivery List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.support),
+                    onTap: () {
+                      Get.off(() => const SupportPage());
+                    },
+                    leading: Image.asset("assets/images/support.png",scale: 8,),
                     title: const Text('Support'),
                   ),
                   ListTile(
                     onTap: () {},
-                    leading: const Icon(Icons.logout),
+                    leading: Image.asset("assets/images/logout.png",scale: 8,),
                     title: const Text('Logout'),
                   ),
                   const Spacer(),
@@ -136,6 +159,7 @@ class _HomePage extends State<HomePage> {
                     child: Container(
                       margin: const EdgeInsets.symmetric(
                         vertical: 16.0,
+                        horizontal: 16
                       ),
                       child: const Text('Terms of Service | Privacy Policy'),
                     ),
@@ -148,7 +172,15 @@ class _HomePage extends State<HomePage> {
         child: Scaffold(
             appBar: AppBar(
               title: const Text('Dashboard'),
-              backgroundColor: Colors.blueGrey.shade500,
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF8B69FF), Color(0xD0165985),], // Your gradient colors here
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ),
               leading: IconButton(
                 onPressed: _handleMenuButtonPressed,
                 icon: ValueListenableBuilder<AdvancedDrawerValue>(
@@ -226,10 +258,10 @@ class _HomePage extends State<HomePage> {
                             height: 35,
                             width: 120,
                             decoration: BoxDecoration(
-                              color: Colors.green[900],
+                              color: Colors.brown.shade800,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: Colors.brown.shade200,
+                                color: Colors.black,
                               ),
                             ),
                             child: Center(
@@ -260,18 +292,19 @@ class _HomePage extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 35,
-                      width: 170,
+                      height: 40,
+                      width: 200,
                       decoration: BoxDecoration(
-                        color: Colors.green[900],
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Colors.black,
-                        ),
+                        gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
+                      ),
+                        borderRadius: BorderRadius.circular(16),
                       ),
                       child: Center(
                         child: Text(
-                          'ADD PARCELL',
+                          'Add Parcel',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
@@ -375,12 +408,12 @@ class _HomePage extends State<HomePage> {
     return Flexible(
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.white54, // Adjust the border color
-              width: 2, // Adjust the border width
-            ),
             borderRadius: BorderRadius.circular(15),
-            color: Colors.blueGrey.shade500,
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.withOpacity(0.3)],
+                ),
           ),
           padding: const EdgeInsets.symmetric(
             horizontal: 8,
@@ -388,27 +421,28 @@ class _HomePage extends State<HomePage> {
           ),
           child: Column(
             children: [
-              icon,
+              Image.asset("assets/images/coverage.png",scale: 6,),
+              // icon,
               const Divider(
-                color: Colors.white,
+                color: Colors.black,
               ),
               Text(
                 operation,
-                style: TextStyle(
-                  fontSize: 19,
+                style: const TextStyle(
+                  fontSize: 12,
                   fontWeight: FontWeight.w500,
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
               ),
               const Divider(
-                color: Colors.white,
+                color: Colors.black,
               ),
               Text(
                 number,
                 style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
               ),
 
