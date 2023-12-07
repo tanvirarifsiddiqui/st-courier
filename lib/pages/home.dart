@@ -77,6 +77,14 @@ class _HomePage extends State<HomePage> {
                   ),
                   ListTile(
                     onTap: () {
+                    },
+                    leading: Image.asset("assets/images/home.png",scale: 18,),
+                    title: const Text('Home', style: TextStyle(color: Colors.black),),
+                    tileColor: Colors.blue,
+                  ),
+                  const Divider(color: Colors.grey,),
+                  ListTile(
+                    onTap: () {
                       Get.off(() => const AddParcellPage());
                     },
                     leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
@@ -145,10 +153,11 @@ class _HomePage extends State<HomePage> {
                     leading: Image.asset("assets/images/support.png",scale: 8,),
                     title: const Text('Support'),
                   ),
+                  Divider(color: Colors.grey.shade600,),
                   ListTile(
                     onTap: () {},
                     leading: Image.asset("assets/images/logout.png",scale: 8,),
-                    title: const Text('Logout'),
+                    title: const Text('Logout',style: TextStyle(color: Colors.black)),
                   ),
                   const Spacer(),
                   DefaultTextStyle(

@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:st_courier/pages/covarage_area.dart';
+import 'package:st_courier/pages/delivery_list.dart';
 import 'package:st_courier/pages/home.dart';
+import 'package:st_courier/pages/order_tracking.dart';
+import 'package:st_courier/pages/parcel_list.dart';
+import 'package:st_courier/pages/payment_list.dart';
+import 'package:st_courier/pages/payment_request_list.dart';
+import 'package:st_courier/pages/pick_up_parcel_list.dart';
+import 'package:st_courier/pages/return_parcel_list.dart';
+import 'package:st_courier/pages/support.dart';
 
 class AddParcellPage extends StatefulWidget {
   const AddParcellPage({Key? key}) : super(key: key);
@@ -24,7 +33,7 @@ class _AddParcellPage extends State<AddParcellPage>{
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Colors.blueGrey, Colors.blueGrey.withOpacity(0.2)],
+              colors: [Colors.white, Colors.blue.shade900.withOpacity(0.7)],
             ),
           ),
         ),
@@ -34,6 +43,7 @@ class _AddParcellPage extends State<AddParcellPage>{
         animateChildDecoration: true,
         rtlOpening: false,
         // openScale: 1.0,
+        openRatio: .70,
         disabledGestures: false,
         childDecoration: const BoxDecoration(
           // NOTICE: Uncomment if you want to add shadow behind the page.
@@ -51,81 +61,103 @@ class _AddParcellPage extends State<AddParcellPage>{
             child: ListTileTheme(
               textColor: Colors.white,
               iconColor: Colors.white,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+              child: ListView(
+                // physics: AlwaysScrollableScrollPhysics(),
                 children: [
                   Container(
-                    width: 100.0,
-                    height: 100.0,
+                    width: 120.0,
+                    height: 120.0,
                     margin: const EdgeInsets.only(
                       top: 18.0,
                       bottom: 18.0,
                     ),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: const BoxDecoration(
-                      color: Colors.black26,
-                      shape: BoxShape.circle,
-                    ),
                     child: Image.asset(
-                      'assets/images/user.png',
+                      'assets/images/logo.png',
                     ),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => HomePage());
                     },
-                    leading: const Icon(Icons.home),
-                    title: const Text('Home'),
+                    leading: Image.asset("assets/images/home.png",scale: 18,),
+                    title: const Text('Home',style: TextStyle(color: Colors.black)),
+                  ),
+                  Divider(color: Colors.grey,),
+                  ListTile(
+                    onTap: () {
+                    },
+                    leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
+                    title: const Text('Add Parcel'),
+                    tileColor: Colors.blue,
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.list_alt),
+                    onTap: () {
+                      Get.off(() => const ParcelListPage());
+                    },
+                    leading: Image.asset("assets/images/total_parcel_drawer.png",scale: 8,),
                     title: const Text('Parcel List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.track_changes),
+                    onTap: () {
+                      Get.off(() => const OrderTrackingPage());
+                    },
+                    leading: Image.asset("assets/images/waitingdelivery.png",scale: 6,),
                     title: const Text('Order Tracking'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.area_chart),
+                    onTap: () {
+                      Get.off(() => const CoverageAreaPage());
+                    },
+                    leading: Image.asset("assets/images/coverage.png",scale: 8,),
                     title: const Text('Coverage Area'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.payment),
+                    onTap: () {
+                      Get.off(() => const PaymentRequestListPage());
+                    },
+                    leading: Image.asset("assets/images/payment.png",scale: 8,),
                     title: const Text('Payment Request List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.payments),
+                    onTap: () {
+                      Get.off(() => const PaymentListPage());
+                    },
+                    leading: Image.asset("assets/images/payment.png",scale: 8,),
                     title: const Text('Payment List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.wheelchair_pickup),
+                    onTap: () {
+                      Get.off(() => const PickupParcelListPage());
+                    },
+                    leading: Image.asset("assets/images/pickup.png",scale: 8,),
                     title: const Text('Pickup Parcel List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.assignment_return),
+                    onTap: () {
+                      Get.off(() => const ReturnParcelListPage());
+                    },
+                    leading: Image.asset("assets/images/returnnev.png",scale: 8,),
                     title: const Text('Return Parcel List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.delivery_dining),
+                    onTap: () {
+                      Get.off(() => const DeliveryListPage());
+                    },
+                    leading: Image.asset("assets/images/complete.png",scale: 8,),
                     title: const Text('Delivery List'),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.support),
+                    onTap: () {
+                      Get.off(() => const SupportPage());
+                    },
+                    leading: Image.asset("assets/images/support.png",scale: 8,),
                     title: const Text('Support'),
                   ),
+                  Divider(color: Colors.grey.shade600,),
                   ListTile(
                     onTap: () {},
-                    leading: const Icon(Icons.logout),
-                    title: const Text('Logout'),
+                    leading: Image.asset("assets/images/logout.png",scale: 8,),
+                    title: const Text('Logout',style: TextStyle(color: Colors.black)),
                   ),
                   const Spacer(),
                   DefaultTextStyle(
@@ -135,7 +167,8 @@ class _AddParcellPage extends State<AddParcellPage>{
                     ),
                     child: Container(
                       margin: const EdgeInsets.symmetric(
-                        vertical: 16.0,
+                          vertical: 16.0,
+                          horizontal: 16
                       ),
                       child: const Text('Terms of Service | Privacy Policy'),
                     ),
@@ -147,8 +180,16 @@ class _AddParcellPage extends State<AddParcellPage>{
         ),
         child: Scaffold(
             appBar: AppBar(
-              title: const Text('ADD Parcell'),
-              backgroundColor: Colors.blueGrey.shade500,
+              title: const Text('Add Parcel'),
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF8B69FF), Color(0xD0165985),], // Your gradient colors here
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ),
               leading: IconButton(
                 onPressed: _handleMenuButtonPressed,
                 icon: ValueListenableBuilder<AdvancedDrawerValue>(
@@ -174,114 +215,16 @@ class _AddParcellPage extends State<AddParcellPage>{
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    // children: [
-                    //   Row(children: [
-                    //     ClipOval(
-                    //         child: Container(
-                    //           width: 60,
-                    //           height: 60,
-                    //           decoration: BoxDecoration(
-                    //               shape: BoxShape.circle,
-                    //               border: Border.all(
-                    //                 color:
-                    //                 Colors.white60, // Adjust the border color
-                    //                 width: 2.5, // Adjust the border width
-                    //               ),
-                    //               image: const DecorationImage(
-                    //                 fit: BoxFit.cover,
-                    //                 image: AssetImage("assets/images/user.png"),
-                    //               )),
-                    //         )),
-                    //     const SizedBox(width: 10),
-                    //     SizedBox(
-                    //       width: MediaQuery.of(context).size.width *
-                    //           0.25, //solved by media query
-                    //       child: Column(
-                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                    //           children: [
-                    //             const Text("Md. Humayun",
-                    //                 softWrap: true,
-                    //                 style: TextStyle(
-                    //                     color: Colors.black,
-                    //                     fontWeight: FontWeight.w500)),
-                    //             const SizedBox(
-                    //               height: 5,
-                    //             ),
-                    //             Text("Balance 175",
-                    //                 softWrap: true,
-                    //                 style: TextStyle(fontStyle: FontStyle.italic )),
-                    //             const SizedBox(
-                    //               height: 5,
-                    //             ),
-                    //             Text("01852148425",
-                    //               softWrap: true,),
-                    //           ]),
-                    //     ),
-                    //     const SizedBox(width: 20), // Add space between address and connection text
-                    //     GestureDetector(
-                    //       onTap: () {
-                    //         print("Tapped for profile");
-                    //       },
-                    //       child: Container(
-                    //         height: 35,
-                    //         width: 120,
-                    //         decoration: BoxDecoration(
-                    //           color: Colors.green[900],
-                    //           borderRadius: BorderRadius.circular(12),
-                    //           border: Border.all(
-                    //             color: Colors.brown.shade200,
-                    //           ),
-                    //         ),
-                    //         child: Center(
-                    //           child: Text(
-                    //             'View Profile',
-                    //             style: TextStyle(
-                    //               fontSize: 16,
-                    //               color: Colors.brown[50],
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ]),
-                    // ],
+                    children: [
+                    ],
                   ),
                 ),
               ),
               const Divider(thickness: 1),
               const SizedBox(height: 15,),
-              const Center(child: Text("Welcome To ST Courier", style: TextStyle(fontSize: 26),)),
+              //something todo
               const SizedBox(height: 15,),
-              GestureDetector(
-                onTap: () {
-                  print("Tapped for Parcell");
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 35,
-                      width: 170,
-                      decoration: BoxDecoration(
-                        color: Colors.green[900],
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Colors.black,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'ADD PARCELL',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              //something todo
             ]
             )
         )
