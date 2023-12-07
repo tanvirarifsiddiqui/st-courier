@@ -236,11 +236,11 @@ class _HomePage extends State<HomePage> {
                         const SizedBox(width: 10),
                         SizedBox(
                           width: MediaQuery.of(context).size.width *
-                              0.25, //solved by media query
+                              0.40, //solved by media query
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text("Md. Humayun",
+                                const Text("Md. Tanvir",
                                     softWrap: true,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -258,27 +258,36 @@ class _HomePage extends State<HomePage> {
                                     softWrap: true,),
                               ]),
                         ),
-                        const SizedBox(width: 20), // Add space between address and connection text
+                        // const SizedBox(width: 10), // Add space between address and connection text
                         GestureDetector(
                           onTap: () {
                             print("Tapped for profile");
                           },
                           child: Container(
-                            height: 35,
+                            height: 40,
                             width: 120,
                             decoration: BoxDecoration(
-                              color: Colors.brown.shade800,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.black,
+                              gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.blue.withOpacity(0.4),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.4)],
                               ),
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 2), // changes the position of shadow
+                                ),
+                              ],
                             ),
                             child: Center(
                               child: Text(
                                 'View Profile',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.brown[50],
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
@@ -291,7 +300,20 @@ class _HomePage extends State<HomePage> {
               ),
               const Divider(thickness: 1),
               const SizedBox(height: 15,),
-              const Center(child: Text("Welcome To ST Courier", style: TextStyle(fontSize: 26),)),
+              const Center(child: Text(
+                'Welcome To ST Courier',
+                style: TextStyle(
+                  shadows: [
+                    Shadow(
+                      color: Colors.grey, // Shadow color and opacity
+                      offset: Offset(0, 1), // Shadow position (horizontal, vertical)
+                      blurRadius: 5, // Shadow blur radius
+                    ),
+                  ],
+                  fontSize: 26,
+                  color: Colors.black,
+                ),
+              )),
               const SizedBox(height: 15,),
               GestureDetector(
                 onTap: () {
@@ -301,7 +323,7 @@ class _HomePage extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 40,
+                      height: 45,
                       width: 200,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -310,6 +332,14 @@ class _HomePage extends State<HomePage> {
                         colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
                       ),
                         borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3), // changes the position of shadow
+                          ),
+                        ],
                       ),
                       child: Center(
                         child: Text(
@@ -324,7 +354,7 @@ class _HomePage extends State<HomePage> {
                   ],
                 ),
               ),
-              _buildPrayerTimeWidgets(),
+              _buildDashboardWidgets(),
             ]
             )
         )
@@ -333,7 +363,7 @@ class _HomePage extends State<HomePage> {
 
 
 
-  Widget _buildPrayerTimeWidgets() {
+  Widget _buildDashboardWidgets() {
     return Column(
       children: [
         const SizedBox(
@@ -343,66 +373,66 @@ class _HomePage extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel(Icon(Icons.card_giftcard,color: Colors.white), 'Total Parcel', "608"),
-            const SizedBox(width: 12,),
+            _cardModel('Total Parcel', "608","assets/images/totalpearcel.png",130),
+            const SizedBox(width: 16,),
 
-            _cardModel(Icon(Icons.cancel,color: Colors.white), 'Cancel Parcel', "4"),
-            const SizedBox(width: 12,),
+            _cardModel('Cancel Parcel', "4","assets/images/cancelled.png",130),
+            const SizedBox(width: 16,),
 
-            _cardModel(Icon(Icons.pending_actions,color: Colors.white), 'Pending Pickup', "5"),
+            _cardModel('Pending Pickup', "5","assets/images/waitingpickup.png",130),
             // const SizedBox(width: 12,),
 
           ],
         ),
 
         const SizedBox(
-          height: 12,
+          height: 24,
         ),
 
         //2nd Tow Segments
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel(Icon(Icons.fire_truck,color: Colors.white), 'Pending Delivery', "558"),
-            const SizedBox(width: 12,),
+            _cardModel( 'Pending Delivery', "558","assets/images/waitingpickup1.png",130),
+            const SizedBox(width: 16,),
 
-            _cardModel(Icon(Icons.done,color: Colors.white), 'Delivery Complete', "41"),
-            const SizedBox(width: 12,),
+            _cardModel( 'Delivery Complete', "41","assets/images/deliverycomplete.png",130),
+            const SizedBox(width: 16,),
 
-            _cardModel(Icon(Icons.payments_rounded,color: Colors.white), 'Payment Complete', "21"),
+            _cardModel( 'Payment Complete', "21","assets/images/paymentcomplete.png",130),
             // const SizedBox(width: 12,),
 
           ],
         ),
 
         const SizedBox(
-          height: 12,
+          height: 24,
         ),
 //3ed Tow Segments
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel(Icon(Icons.card_giftcard,color: Colors.white), 'Return Parcel', "10"),
-            const SizedBox(width: 12,),
+            _cardModel('Return Parcel', "10","assets/images/returnparcel.png",130),
+            const SizedBox(width: 16,),
 
-            _cardModel(Icon(Icons.assignment_returned_rounded,color: Colors.white), 'Return Complete', "41"),
-            const SizedBox(width: 12,),
+            _cardModel('Return Complete', "41","assets/images/returncomplete.png",130),
+            const SizedBox(width: 16,),
 
-            _cardModel(Icon(Icons.payment,color: Colors.white,), 'Payment in Progress', "0"),
+            _cardModel( 'Payment in Progress', "0","assets/images/pendingamout.png",130),
             // const SizedBox(width: 12,),
 
           ],
         ),
 
-        const SizedBox(height: 12,),
+        const SizedBox(height: 24,),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel(Icon(Icons.auto_awesome_mosaic_outlined,color: Colors.white,), 'Total Collect Amount', "31,551"),
-            const SizedBox(width: 29,),
+            _cardModel( 'Total Collect Amount', "31,551","assets/images/totalcollectamount.png",180),
 
-            _cardModel(Icon(Icons.paid,color: Colors.white), 'Total Paid Amount', "20,532"),
+            const SizedBox(width: 16,),
+            _cardModel( 'Total Paid Amount', "20,532","assets/images/cashondelivery.png",180),
             // const SizedBox(width: 12,),
 
           ],
@@ -413,15 +443,25 @@ class _HomePage extends State<HomePage> {
     );
   }
 
-  Widget _cardModel(Icon icon, String operation, String number){
+  Widget _cardModel(String operation, String number,String iconPath, double width){
     return Flexible(
         child: Container(
+          height: 150,
+          width: width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: const Offset(0, 3), // changes the position of shadow
+              ),
+            ],
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.withOpacity(0.3)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Colors.blue.withOpacity(0.4),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.4)],
                 ),
           ),
           padding: const EdgeInsets.symmetric(
@@ -429,29 +469,29 @@ class _HomePage extends State<HomePage> {
             vertical: 8,
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("assets/images/coverage.png",scale: 6,),
-              // icon,
-              const Divider(
-                color: Colors.black,
+              SizedBox(
+                height: 50, // Fixed height for the image
+                width: 50, // Fixed width for the image
+                child: Image.asset(iconPath),
               ),
               Text(
                 operation,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  // color: Colors.white,
+                  fontSize: 16,
+                  color: Colors.black,
                 ),
               ),
-              const Divider(
-                color: Colors.black,
-              ),
+              SizedBox(height: 3),
               Text(
                 number,
                 style: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  // color: Colors.white,
+                  fontSize: 22,
+                  // fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
 
