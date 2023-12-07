@@ -5,6 +5,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
+import 'package:st_courier/pages/fragment_screens/profile_page.dart';
 import 'package:st_courier/pages/parcel_list.dart';
 import 'package:st_courier/pages/payment_list.dart';
 import 'package:st_courier/pages/payment_request_list.dart';
@@ -236,7 +237,7 @@ class _HomePage extends State<HomePage> {
                         const SizedBox(width: 10),
                         SizedBox(
                           width: MediaQuery.of(context).size.width *
-                              0.40, //solved by media query
+                              0.34, //solved by media query
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -261,7 +262,7 @@ class _HomePage extends State<HomePage> {
                         // const SizedBox(width: 10), // Add space between address and connection text
                         GestureDetector(
                           onTap: () {
-                            print("Tapped for profile");
+                            Get.to(()=>ProfilePage());
                           },
                           child: Container(
                             height: 40,
@@ -317,7 +318,7 @@ class _HomePage extends State<HomePage> {
               const SizedBox(height: 15,),
               GestureDetector(
                 onTap: () {
-                  print("Tapped for Parcell");
+                  Get.to(()=> AddParcellPage());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -364,6 +365,8 @@ class _HomePage extends State<HomePage> {
 
 
   Widget _buildDashboardWidgets() {
+    double cardWidth = MediaQuery.of(context).size.width * 0.28;
+    double cardWidth2 = MediaQuery.of(context).size.width * 0.38;
     return Column(
       children: [
         const SizedBox(
@@ -373,13 +376,27 @@ class _HomePage extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel('Total Parcel', "608","assets/images/totalpearcel.png",130),
-            const SizedBox(width: 16,),
+            GestureDetector(
+              onTap: (){
+                Get.to(ParcelListPage());
+              },
+                child: _cardModel('Total Parcel', "608","assets/images/totalpearcel.png",cardWidth)
+            ),
+            // const SizedBox(width: 16,),
 
-            _cardModel('Cancel Parcel', "4","assets/images/cancelled.png",130),
-            const SizedBox(width: 16,),
+            GestureDetector(
+                onTap: (){
+                  Get.to(ParcelListPage());
+                },
+                child: _cardModel('Cancel Parcel', "4","assets/images/cancelled.png",cardWidth)
+            ),
+            // const SizedBox(width: 16,),
 
-            _cardModel('Pending Pickup', "5","assets/images/waitingpickup.png",130),
+            GestureDetector(
+                onTap: (){
+                  Get.to(ParcelListPage());
+                },
+                child: _cardModel('Pending Pickup', "5","assets/images/waitingpickup.png",cardWidth)),
             // const SizedBox(width: 12,),
 
           ],
@@ -393,13 +410,25 @@ class _HomePage extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel( 'Pending Delivery', "558","assets/images/waitingpickup1.png",130),
-            const SizedBox(width: 16,),
+            GestureDetector(
+                onTap: (){
+                  Get.to(()=>ParcelListPage());
+                },
+                child: _cardModel( 'Pending Delivery', "558","assets/images/waitingpickup1.png",cardWidth)),
+            // const SizedBox(width: 16,),
 
-            _cardModel( 'Delivery Complete', "41","assets/images/deliverycomplete.png",130),
-            const SizedBox(width: 16,),
+            GestureDetector(
+                onTap: (){
+                  Get.to(()=>ParcelListPage());
+                },
+                child: _cardModel( 'Delivery Complete', "41","assets/images/deliverycomplete.png",cardWidth)),
+            // const SizedBox(width: 16,),
 
-            _cardModel( 'Payment Complete', "21","assets/images/paymentcomplete.png",130),
+            GestureDetector(
+                onTap: (){
+                  Get.to(()=>ParcelListPage());
+                },
+                child: _cardModel( 'Payment Complete', "21","assets/images/paymentcomplete.png",cardWidth)),
             // const SizedBox(width: 12,),
 
           ],
@@ -412,13 +441,25 @@ class _HomePage extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel('Return Parcel', "10","assets/images/returnparcel.png",130),
-            const SizedBox(width: 16,),
+            GestureDetector(
+                onTap: (){
+                  Get.to(()=>ParcelListPage());
+                },
+                child: _cardModel('Return Parcel', "10","assets/images/returnparcel.png",cardWidth)),
+            // const SizedBox(width: 16,),
 
-            _cardModel('Return Complete', "41","assets/images/returncomplete.png",130),
-            const SizedBox(width: 16,),
+            GestureDetector(
+                onTap: (){
+                  Get.to(()=>ParcelListPage());
+                },
+                child: _cardModel('Return Complete', "41","assets/images/returncomplete.png",cardWidth)),
+            // const SizedBox(width: 16,),
 
-            _cardModel( 'Payment in Progress', "0","assets/images/pendingamout.png",130),
+            GestureDetector(
+                onTap: (){
+                  Get.to(()=>ParcelListPage());
+                },
+                child: _cardModel( 'Payment in Progress', "0","assets/images/pendingamout.png",cardWidth)),
             // const SizedBox(width: 12,),
 
           ],
@@ -429,10 +470,18 @@ class _HomePage extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _cardModel( 'Total Collect Amount', "31,551","assets/images/totalcollectamount.png",180),
+            GestureDetector(
+                onTap: (){
+                  Get.to(()=>ParcelListPage());
+                },
+                child: _cardModel( 'Total Collect Amount', "31,551","assets/images/totalcollectamount.png",cardWidth2)),
 
-            const SizedBox(width: 16,),
-            _cardModel( 'Total Paid Amount', "20,532","assets/images/cashondelivery.png",180),
+            // const SizedBox(width: 16,),
+            GestureDetector(
+                onTap: (){
+                  Get.to(()=>ParcelListPage());
+                },
+                child: _cardModel( 'Total Paid Amount', "20,532","assets/images/cashondelivery.png",cardWidth2)),
             // const SizedBox(width: 12,),
 
           ],
@@ -473,8 +522,8 @@ class _HomePage extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 50, // Fixed height for the image
-                width: 50, // Fixed width for the image
+                height: 40, // Fixed height for the image
+                width: 40, // Fixed width for the image
                 child: Image.asset(iconPath),
               ),
               Text(
