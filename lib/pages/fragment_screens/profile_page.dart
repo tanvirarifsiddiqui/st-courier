@@ -110,7 +110,7 @@ class ProfilePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(14.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -139,13 +139,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Merchant Id',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': M-0001',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -161,13 +161,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Company Name',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': Click to Buy',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -183,13 +183,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Email',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': merchant@gmail.com',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -205,7 +205,7 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'COD Charge',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
@@ -227,13 +227,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Website/FB',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': sites.google.com/diu.edu.bd/tanvir3687',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -252,7 +252,7 @@ class ProfilePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(14.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -281,13 +281,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Address',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': Level-2, 25/2 Lake Circus Rd, Dhaka 1205',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -306,7 +306,7 @@ class ProfilePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(14.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -335,13 +335,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Bank Name',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ':  캐럴이 와요.',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -358,7 +358,7 @@ class ProfilePage extends StatelessWidget {
                                   Flexible(
                                     child: Text(
                                       'Bank Account Number',
-                                      style: TextStyle(fontSize: 16.0),
+                                      style: TextStyle(fontSize: 14.0),
                                     ),
                                   ),
                                 ],
@@ -366,7 +366,7 @@ class ProfilePage extends StatelessWidget {
                               Flexible(
                                 child: Text(
                                   ': 에릭이',
-                                  style: TextStyle(fontSize: 16.0),
+                                  style: TextStyle(fontSize: 14.0),
                                 ),
                               ),
                             ],
@@ -381,15 +381,17 @@ class ProfilePage extends StatelessWidget {
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
-                                  Text(
-                                    'Bank Account Name',
-                                    style: TextStyle(fontSize: 16.0),
+                                  Flexible(
+                                    child: Text(
+                                      'Bank Account Name',
+                                      style: TextStyle(fontSize: 14.0),
+                                    ),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': 사과를',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -405,13 +407,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Bkash Number',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': 01794338046',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -427,13 +429,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Nagad Number',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': 01794338046',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -449,13 +451,13 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(width: 10.0),
                                   Text(
                                     'Rocket Number',
-                                    style: TextStyle(fontSize: 16.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
                                 ': 01794338046',
-                                style: TextStyle(fontSize: 16.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -561,6 +563,48 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  // Get.to(()=> AddParcellPage());
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30,bottom: 30),
+                      child: Container(
+                        height: 45,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3), // changes the position of shadow
+                            ),
+                          ],
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Change Your Password',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
