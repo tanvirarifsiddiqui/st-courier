@@ -85,8 +85,10 @@ class ProfilePage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.phone,size: 20, color: Color(0xFFFFFFFF)),
-                        SizedBox(width: 3,),
+                        Icon(Icons.phone, size: 20, color: Color(0xFFFFFFFF)),
+                        SizedBox(
+                          width: 3,
+                        ),
                         Text(
                           '01794338046',
                           style: TextStyle(
@@ -136,62 +138,18 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                   SizedBox(width: 10.0),
                                   Text(
-                                    'Name',
+                                    'Merchant Id',
                                     style: TextStyle(fontSize: 16.0),
                                   ),
                                 ],
                               ),
                               Text(
-                                ': Your Name',
+                                ': M-0001',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
                           ),
                           // The second row of the table
-                          TableRow(
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.email,
-                                    color: Color(0xFF8B69FF),
-                                  ),
-                                  SizedBox(width: 10.0),
-                                  Text(
-                                    'Email',
-                                    style: TextStyle(fontSize: 16.0),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                ': Your Email',
-                                style: TextStyle(fontSize: 16.0),
-                              ),
-                            ],
-                          ),
-                          // The third row of the table
-                          TableRow(
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.phone,
-                                    color: Color(0xFF8B69FF),
-                                  ),
-                                  SizedBox(width: 10.0),
-                                  Text(
-                                    'Phone Number',
-                                    style: TextStyle(fontSize: 16.0),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                ': Your Phone Number',
-                                style: TextStyle(fontSize: 16.0),
-                              ),
-                            ],
-                          ),
-                          // The fourth row of the table
                           TableRow(
                             children: [
                               Row(
@@ -208,7 +166,51 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': Your Company Name',
+                                ': Click to Buy',
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ],
+                          ),
+                          // The third row of the table
+                          TableRow(
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.email,
+                                    color: Color(0xFF8B69FF),
+                                  ),
+                                  SizedBox(width: 10.0),
+                                  Text(
+                                    'Email',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                ': merchant@gmail.com',
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ],
+                          ),
+                          // The fourth row of the table
+                          TableRow(
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.attach_money,
+                                    color: Color(0xFF8B69FF),
+                                  ),
+                                  SizedBox(width: 10.0),
+                                  Text(
+                                    'COD Charge',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                ': 0',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -230,7 +232,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': Your Website/FB',
+                                ': sites.google.com/diu.edu.bd/tanvir3687',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -284,7 +286,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': Your Address',
+                                ': Level-2, 25/2 Lake Circus Rd, Dhaka 1205',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -338,7 +340,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': Your Bank Name',
+                                ':  캐럴이 와요.',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -363,7 +365,7 @@ class ProfilePage extends StatelessWidget {
                               ),
                               Flexible(
                                 child: Text(
-                                  ': Your Account Number',
+                                  ': 에릭이',
                                   style: TextStyle(fontSize: 16.0),
                                 ),
                               ),
@@ -386,7 +388,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': Your Account Name',
+                                ': 사과를',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -397,7 +399,7 @@ class ProfilePage extends StatelessWidget {
                               Row(
                                 children: [
                                   Icon(
-                                    Icons.phone_android,
+                                    Icons.contact_phone_rounded,
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
@@ -408,7 +410,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': Your Bkash Number',
+                                ': 01794338046',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -419,7 +421,7 @@ class ProfilePage extends StatelessWidget {
                               Row(
                                 children: [
                                   Icon(
-                                    Icons.phone_android,
+                                    Icons.contact_phone_rounded,
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
@@ -430,7 +432,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': Your Nagad Number',
+                                ': 01794338046',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -441,7 +443,7 @@ class ProfilePage extends StatelessWidget {
                               Row(
                                 children: [
                                   Icon(
-                                    Icons.phone_android,
+                                    Icons.contact_phone_rounded,
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
@@ -452,7 +454,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': Your Rocket Number',
+                                ': 01794338046',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -495,7 +497,7 @@ class ProfilePage extends StatelessWidget {
                               Row(
                                 children: [
                                   Icon(
-                                    Icons.local_shipping,
+                                    Icons.monetization_on,
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
@@ -506,7 +508,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': 25 Tk',
+                                ': ৳ 25',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -517,7 +519,7 @@ class ProfilePage extends StatelessWidget {
                               Row(
                                 children: [
                                   Icon(
-                                    Icons.local_shipping,
+                                    Icons.monetization_on,
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
@@ -528,7 +530,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': 25 Tk',
+                                ': ৳ 25',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -539,7 +541,7 @@ class ProfilePage extends StatelessWidget {
                               Row(
                                 children: [
                                   Icon(
-                                    Icons.local_shipping,
+                                    Icons.monetization_on,
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
@@ -550,7 +552,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ': 25 Tk',
+                                ': ৳ 25',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -561,14 +563,10 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
-
-
-
             ],
           ),
         ),
       ),
     );
   }
-
 }
