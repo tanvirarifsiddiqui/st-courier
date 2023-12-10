@@ -11,7 +11,7 @@ import 'package:st_courier/pages/pick_up_parcel_list.dart';
 import 'package:st_courier/pages/return_parcel_list.dart';
 import 'package:st_courier/pages/support.dart';
 
-import 'add_parcell.dart';
+import 'add_parcel.dart';
 
 class OrderTrackingPage extends StatefulWidget {
   const OrderTrackingPage({Key? key}) : super(key: key);
@@ -84,7 +84,7 @@ class _OrderTrackingPage extends State<OrderTrackingPage>{
                   Divider(color: Colors.grey,),
                   ListTile(
                     onTap: () {
-                      Get.off(() => const AddParcellPage());
+                      Get.off(() => const AddParcelPage());
                     },
                     leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
                     title: const Text('Add Parcel'),

@@ -13,14 +13,14 @@ import 'package:st_courier/pages/pick_up_parcel_list.dart';
 import 'package:st_courier/pages/return_parcel_list.dart';
 import 'package:st_courier/pages/support.dart';
 
-class AddParcellPage extends StatefulWidget {
-  const AddParcellPage({Key? key}) : super(key: key);
+class AddParcelPage extends StatefulWidget {
+  const AddParcelPage({Key? key}) : super(key: key);
 
   @override
-  State<AddParcellPage> createState() => _AddParcellPage();
+  State<AddParcelPage> createState() => _AddParcelPage();
 }
 
-class _AddParcellPage extends State<AddParcellPage> {
+class _AddParcelPage extends State<AddParcelPage> {
   final _advancedDrawerController = AdvancedDrawerController();
 
   final _merchantOrderController = TextEditingController();

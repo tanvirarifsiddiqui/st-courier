@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
-import 'package:st_courier/pages/add_parcell.dart';
+import 'package:st_courier/pages/add_parcel.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
 import 'package:st_courier/pages/home.dart';
@@ -10,7 +10,42 @@ import 'package:st_courier/pages/payment_request_list.dart';
 import 'package:st_courier/pages/pick_up_parcel_list.dart';
 import 'package:st_courier/pages/return_parcel_list.dart';
 import 'package:st_courier/pages/support.dart';
+import '../Models/parcel_list_model.dart';
 import 'order_tracking.dart';
+
+// A list of sample parcel objects
+final List<Parcel> parcels = [
+  Parcel(
+    invoiceId: '23120901Z00H8',
+    name: 'John Doe',
+    phone: '1234567890',
+    address: '123 Main Street',
+    charge: 50.0,
+    amount: 100.0,
+    brief: 'Some brief description',
+    status: 'Delivered',
+  ),
+  Parcel(
+    invoiceId: '23120901Z00H9',
+    name: 'Jane Doe',
+    phone: '0987654321',
+    address: '456 Main Street',
+    charge: 40.0,
+    amount: 80.0,
+    brief: 'Some brief description',
+    status: 'Pending',
+  ),
+  Parcel(
+    invoiceId: '23120901Z00H10',
+    name: 'Jack Doe',
+    phone: '1122334455',
+    address: '789 Main Street',
+    charge: 60.0,
+    amount: 120.0,
+    brief: 'Some brief description',
+    status: 'Cancelled',
+  ),
+];
 
 class ParcelListPage extends StatefulWidget {
   const ParcelListPage({Key? key}) : super(key: key);
@@ -21,6 +56,79 @@ class ParcelListPage extends StatefulWidget {
 
 class _ParcelListPage extends State<ParcelListPage>{
   final _advancedDrawerController = AdvancedDrawerController();
+
+  ///redundable
+  // A variable to store the selected parcel status
+  String selectedStatus = 'All';
+
+  // A list of possible parcel statuses
+  final List<String> statuses = ['All', 'Delivered', 'Pending', 'Cancelled'];
+
+  // A variable to store the invoice number filter
+  String invoiceNo = '';
+
+  // A variable to store the merchant order number filter
+  String merchantOrderNo = '';
+
+  // A variable to store the from date filter
+  DateTime? fromDate;
+
+  // A variable to store the to date filter
+  DateTime? toDate;
+
+  // A function to show a date picker dialog
+  Future<void> _selectDate(BuildContext context, bool isFrom) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null) {
+      setState(() {
+        if (isFrom) {
+          fromDate = picked;
+        } else {
+          toDate = picked;
+        }
+      });
+    }
+  }
+
+  // A function to apply the filters and return a filtered list of parcels
+  List<Parcel> _applyFilters() {
+    List<Parcel> filteredParcels = parcels;
+    if (selectedStatus != 'All') {
+      filteredParcels = filteredParcels
+          .where((parcel) => parcel.status == selectedStatus)
+          .toList();
+    }
+    if (invoiceNo.isNotEmpty) {
+      filteredParcels = filteredParcels
+          .where((parcel) => parcel.invoiceId.contains(invoiceNo))
+          .toList();
+    }
+    if (merchantOrderNo.isNotEmpty) {
+      filteredParcels = filteredParcels
+          .where((parcel) => parcel.brief.contains(merchantOrderNo))
+          .toList();
+    }
+    if (fromDate != null) {
+      filteredParcels = filteredParcels
+          .where((parcel) =>
+          DateTime.parse(parcel.invoiceId.substring(0, 8))
+              .isAfter(fromDate!))
+          .toList();
+    }
+    if (toDate != null) {
+      filteredParcels = filteredParcels
+          .where((parcel) =>
+          DateTime.parse(parcel.invoiceId.substring(0, 8)).isBefore(toDate!))
+          .toList();
+    }
+    return filteredParcels;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AdvancedDrawer(
@@ -83,7 +191,7 @@ class _ParcelListPage extends State<ParcelListPage>{
                   Divider(color: Colors.grey,),
                   ListTile(
                     onTap: () {
-                      Get.off(() => const AddParcellPage());
+                      Get.off(() => const AddParcelPage());
                     },
                     leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
                     title: const Text('Add Parcel'),
@@ -205,27 +313,130 @@ class _ParcelListPage extends State<ParcelListPage>{
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    ],
+            body: Column(
+              children: [
+                // A dropdown to select the parcell status
+                DropdownButton<String>(
+                  value: selectedStatus,
+                  items: statuses
+                      .map((status) => DropdownMenuItem<String>(
+                    value: status,
+                    child: Text(status),
+                  ))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedStatus = value!;
+                    });
+                  },
+                ),
+                // A row to enter the invoice number and the merchant order number
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          labelText: 'Invoice No',
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            invoiceNo = value;
+                          });
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          labelText: 'Merchant Order No',
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            merchantOrderNo = value;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                // A row to select the from date and the to date
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        title: const Text('From Date'),
+                        subtitle: Text(fromDate == null
+                            ? 'Not Selected'
+                            : '${fromDate!.day}/${fromDate!.month}/${fromDate!.year}'),
+                        onTap: () {
+                          _selectDate(context, true);
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        title: const Text('To Date'),
+                        subtitle: Text(toDate == null
+                            ? 'Not Selected'
+                            : '${toDate!.day}/${toDate!.month}/${toDate!.year}'),
+                        onTap: () {
+                          _selectDate(context, false);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                // A button to apply the filters
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: const Text('Filter'),
+                ),
+                // A list view to display the filtered parcels
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _applyFilters().length,
+                    itemBuilder: (context, index) {
+                      final parcell = _applyFilters()[index];
+                      return GestureDetector(
+                        onTap: () {
+                          // Do something when the card is tapped
+                        },
+                        child: Card(
+                          // Use a slightly colorful card
+                          color: Colors.purple[50],
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Customer Invoice ID: ${parcell.invoiceId}'),
+                                Text('Customer Name: ${parcell.name}'),
+                                Text('Customer Phone Number: ${parcell.phone}'),
+                                Text('Customer Address: ${parcell.address}'),
+                                Text('Total Charge: ${parcell.charge}'),
+                                Text('Total Collection Amount: ${parcell.amount}'),
+                                Text('Parcel Brief: ${parcell.brief}'),
+                                // Use a bordered text to display the status
+                                Container(
+                                  padding: const EdgeInsets.all(4.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.deepPurple),
+                                    borderRadius: BorderRadius.circular(4.0),
+                                  ),
+                                  child: Text(parcell.status),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
-              ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              //something todo
-              const SizedBox(height: 15,),
-              //something todo
-            ]
-            )
+              ],
+            ),
         )
     );
   }

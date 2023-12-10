@@ -11,7 +11,7 @@ import 'package:st_courier/pages/pick_up_parcel_list.dart';
 import 'package:st_courier/pages/return_parcel_list.dart';
 import 'package:st_courier/pages/support.dart';
 
-import 'add_parcell.dart';
+import 'add_parcel.dart';
 
 class PaymentRequestListPage extends StatefulWidget {
   const PaymentRequestListPage({Key? key}) : super(key: key);
@@ -84,7 +84,7 @@ class _PaymentRequestListPage extends State<PaymentRequestListPage>{
                   Divider(color: Colors.grey,),
                   ListTile(
                     onTap: () {
-                      Get.off(() => const AddParcellPage());
+                      Get.off(() => const AddParcelPage());
                     },
                     leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
                     title: const Text('Add Parcel'),

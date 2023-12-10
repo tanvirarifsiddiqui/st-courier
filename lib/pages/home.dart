@@ -12,7 +12,7 @@ import 'package:st_courier/pages/payment_request_list.dart';
 import 'package:st_courier/pages/pick_up_parcel_list.dart';
 import 'package:st_courier/pages/return_parcel_list.dart';
 import 'package:st_courier/pages/support.dart';
-import 'add_parcell.dart';
+import 'add_parcel.dart';
 import 'order_tracking.dart';
 
 
@@ -86,7 +86,7 @@ class _HomePage extends State<HomePage> {
                   const Divider(color: Colors.grey,),
                   ListTile(
                     onTap: () {
-                      Get.off(() => const AddParcellPage());
+                      Get.off(() => const AddParcelPage());
                     },
                     leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
                     title: const Text('Add Parcel'),
@@ -318,7 +318,7 @@ class _HomePage extends State<HomePage> {
               const SizedBox(height: 15,),
               GestureDetector(
                 onTap: () {
-                  Get.to(()=> AddParcellPage());
+                  Get.to(()=> AddParcelPage());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
