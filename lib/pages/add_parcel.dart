@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:st_courier/Models/card_row_model.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
 import 'package:st_courier/pages/home.dart';
@@ -492,12 +493,12 @@ class _AddParcelPage extends State<AddParcelPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      _buildChargeRow('Collection Amount:', '0.0 Tk', Icons.attach_money),
-                      _buildChargeRow('Weight Charge:', '0.0 Tk', Icons.fitness_center),
-                      _buildChargeRow('Delivery Charge:', '0.0 Tk', Icons.local_shipping),
-                      _buildChargeRow('COD Charge:', '0.0 Tk', Icons.payment),
+                      buildCardRow('Collection Amount:', '0.0 Tk', Icons.attach_money),
+                      buildCardRow('Weight Charge:', '0.0 Tk', Icons.fitness_center),
+                      buildCardRow('Delivery Charge:', '0.0 Tk', Icons.local_shipping),
+                      buildCardRow('COD Charge:', '0.0 Tk', Icons.payment),
                       Divider(),
-                      _buildChargeRow('Total Charge:', '0.0 Tk', Icons.calculate),
+                      buildCardRow('Total Charge:', '0.0 Tk', Icons.calculate),
                     ],
                   ),
                 ),
@@ -563,25 +564,6 @@ class _AddParcelPage extends State<AddParcelPage> {
     _advancedDrawerController.showDrawer();
   }
 
-  //card Row model
-  Widget _buildChargeRow(String label, String amount, IconData icon) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: Color(0xFF8B69FF)),
-              SizedBox(width: 10.0),
-              Text(label),
-            ],
-          ),
-          Text(amount, textAlign: TextAlign.right),
-        ],
-      ),
-    );
-  }
 
 
 }

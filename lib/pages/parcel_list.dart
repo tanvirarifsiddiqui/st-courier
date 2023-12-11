@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
+import 'package:st_courier/Models/card_row_model.dart';
 import 'package:st_courier/pages/add_parcel.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
@@ -44,7 +45,8 @@ final List<Parcel> parcels = [
     amount: 120.0,
     brief: 'Some brief description',
     status: 'Delivery Cancelled',
-  ),Parcel(
+  ),
+  Parcel(
     invoiceId: '23120901Z00H11',
     name: 'Maruf Siddiqui',
     phone: '1122334455',
@@ -53,7 +55,8 @@ final List<Parcel> parcels = [
     amount: 120.0,
     brief: 'Some brief description',
     status: 'Payment Done',
-  ),Parcel(
+  ),
+  Parcel(
     invoiceId: '23120901Z00H12',
     name: 'Jack Doe',
     phone: '1122334455',
@@ -62,7 +65,8 @@ final List<Parcel> parcels = [
     amount: 120.0,
     brief: 'Some brief description',
     status: 'Payment Pending',
-  ),Parcel(
+  ),
+  Parcel(
     invoiceId: '23120901Z00H13',
     name: 'John Doe',
     phone: '1122334455',
@@ -71,7 +75,8 @@ final List<Parcel> parcels = [
     amount: 120.0,
     brief: 'Some brief description',
     status: 'Return Completed',
-  ),Parcel(
+  ),
+  Parcel(
     invoiceId: '23120901Z00H14',
     name: 'Tanvir Arif',
     phone: '1122334455',
@@ -98,7 +103,16 @@ class _ParcelListPage extends State<ParcelListPage> {
   String selectedStatus = 'All';
 
   // A list of possible parcel statuses
-  final List<String> statuses = ['All', 'Delivery Completed','Delivery Pending','Delivery Cancelled', 'Payment Done', 'Payment Pending','Return Completed','Pickup Request'];
+  final List<String> statuses = [
+    'All',
+    'Delivery Completed',
+    'Delivery Pending',
+    'Delivery Cancelled',
+    'Payment Done',
+    'Payment Pending',
+    'Return Completed',
+    'Pickup Request'
+  ];
 
   // A variable to store the invoice number filter
   String invoiceNo = '';
@@ -119,10 +133,11 @@ class _ParcelListPage extends State<ParcelListPage> {
         readOnly: true,
         decoration: InputDecoration(
           labelText: labelText,
-          labelStyle: TextStyle(color: Colors.deepPurple),
-          border: OutlineInputBorder(),
+          labelStyle: const TextStyle(color: Colors.deepPurple),
+          border: const OutlineInputBorder(),
           prefixIcon: IconButton(
-            icon: Icon(Icons.calendar_month,size: 24, color: Colors.deepPurple.shade300),
+            icon: Icon(Icons.calendar_month,
+                size: 24, color: Colors.deepPurple.shade300),
             onPressed: () async {
               final selectedDate = await showDatePicker(
                 context: context,
@@ -142,7 +157,7 @@ class _ParcelListPage extends State<ParcelListPage> {
             },
           ),
         ),
-        style: TextStyle(color: Colors.deepPurple),
+        style: const TextStyle(color: Colors.deepPurple),
         controller: TextEditingController(
           text: dateValue == null
               ? ''
@@ -253,7 +268,7 @@ class _ParcelListPage extends State<ParcelListPage> {
                     title: const Text('Home',
                         style: TextStyle(color: Colors.black)),
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.grey,
                   ),
                   ListTile(
@@ -444,16 +459,16 @@ class _ParcelListPage extends State<ParcelListPage> {
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      leading: Icon(Icons.filter_list, color: Colors.white),
+                      leading: const Icon(Icons.filter_list, color: Colors.white),
                       title: const Center(
                         child: Text(
                           'Filter',
-                          style: TextStyle(color: Colors.white,fontSize: 20),
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
                       children: [
                         Container(
-                          decoration: BoxDecoration(color: Colors.white),
+                          decoration: BoxDecoration(color: Colors.purple.shade50),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -470,21 +485,24 @@ class _ParcelListPage extends State<ParcelListPage> {
                                         color: Colors.deepPurple.shade300),
                                     border: const OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.deepPurple.shade300),
+                                      borderSide: BorderSide(
+                                          color: Colors.deepPurple.shade300),
                                     ),
-                                    labelStyle:
-                                    const TextStyle(color: Colors.deepPurple),
+                                    labelStyle: const TextStyle(
+                                        color: Colors.deepPurple),
                                   ),
                                   items: statuses
                                       .map((address) => DropdownMenuItem(
-                                    value: address,
-                                    child: Text(address,style: TextStyle(
-                                        color: Colors.deepPurple.shade300,
-                                        // fontWeight: FontWeight.normal
-                                    ),
-                                    ),
-                                  ))
+                                            value: address,
+                                            child: Text(
+                                              address,
+                                              style: TextStyle(
+                                                color:
+                                                    Colors.deepPurple.shade300,
+                                                // fontWeight: FontWeight.normal
+                                              ),
+                                            ),
+                                          ))
                                       .toList(),
                                   onChanged: (value) {
                                     setState(() {
@@ -500,8 +518,8 @@ class _ParcelListPage extends State<ParcelListPage> {
                                       child: TextFormField(
                                         decoration: const InputDecoration(
                                           labelText: 'Invoice No',
-                                          labelStyle:
-                                          TextStyle(color: Colors.deepPurple),
+                                          labelStyle: TextStyle(
+                                              color: Colors.deepPurple),
                                           border: OutlineInputBorder(),
                                         ),
                                         onChanged: (value) {
@@ -516,8 +534,8 @@ class _ParcelListPage extends State<ParcelListPage> {
                                       child: TextFormField(
                                         decoration: const InputDecoration(
                                           labelText: 'Merchant Order No',
-                                          labelStyle:
-                                          TextStyle(color: Colors.deepPurple),
+                                          labelStyle: TextStyle(
+                                              color: Colors.deepPurple),
                                           border: OutlineInputBorder(),
                                         ),
                                         onChanged: (value) {
@@ -571,36 +589,135 @@ class _ParcelListPage extends State<ParcelListPage> {
                           // Do something when the card is tapped
                         },
                         child: Card(
-                          // Use a slightly colorful card
                           color: Colors.purple[50],
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                    'Customer Invoice ID: ${parcel.invoiceId}'),
-                                Text('Customer Name: ${parcel.name}'),
-                                Text('Customer Phone Number: ${parcel.phone}'),
-                                Text('Customer Address: ${parcel.address}'),
-                                Text('Total Charge: ${parcel.charge}'),
-                                Text(
-                                    'Total Collection Amount: ${parcel.amount}'),
-                                Text('Parcel Brief: ${parcel.brief}'),
-                                // Use a bordered text to display the status
-                                Container(
-                                  padding: const EdgeInsets.all(4.0),
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: Colors.deepPurple),
-                                    borderRadius: BorderRadius.circular(4.0),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.code,
+                                              color: Color(0xFF8B69FF)),
+                                          const SizedBox(width: 10.0),
+                                          Text(
+                                            parcel.invoiceId,
+                                            style: const TextStyle(
+                                                color: Colors.red, fontSize: 18),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          PopupMenuButton<String>(
+                                            icon: Icon(Icons.more_vert),
+                                            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                                              const PopupMenuItem<String>(
+                                                value: 'Track Parcel',
+                                                child: Text('Track Parcel'),
+                                              ),
+                                              const PopupMenuItem<String>(
+                                                value: 'Hold Parcel',
+                                                child: Text('Hold Parcel'),
+                                              ),
+                                              const PopupMenuItem<String>(
+                                                value: 'Cancel Parcel',
+                                                child: Text('Cancel Parcel'),
+                                              ),
+                                              const PopupMenuItem<String>(
+                                                value: 'Play Parcel',
+                                                child: Text('Play Parcel'),
+                                              ),
+                                            ],
+                                            onSelected: (String value) {
+                                              // Handle operations based on value
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                  child: Text(parcel.status),
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                    child: Row(
+                                      children: [
+                                        const Icon(Icons.person,
+                                            color: Color(0xFF8B69FF)),
+                                        const SizedBox(width: 10.0),
+                                        Text(
+                                          parcel.name,
+                                          style: const TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                    child: Row(
+                                      children: [
+                                        const Icon(Icons.call,
+                                            color: Color(0xFF8B69FF)),
+                                        const SizedBox(width: 10.0),
+                                        Text(parcel.phone),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                    child: Row(
+                                      children: [
+                                        const Icon(Icons.house,
+                                            color: Color(0xFF8B69FF)),
+                                        const SizedBox(width: 10.0),
+                                        Text(parcel.address)
+                                      ],
+                                    ),
+                                  ),
+
+                                  buildCardRow("Total Charge:",
+                                      "${parcel.charge}", Icons.attach_money),
+                                  buildCardRow("Total Collection Amount:",
+                                      "${parcel.amount}", Icons.money),
+                                  buildCardRow("Parcel Brief:", "${parcel.brief}",
+                                      Icons.description),
+
+                                // Container at the bottom with dynamic design
+                                Center(
+                                  child: Container(
+                                    margin: const EdgeInsets.only(top: 16.0),
+                                    padding: const EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      gradient: _getGradientForStatus(parcel.status),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: _getShadowColorForStatus(parcel.status),
+                                          blurRadius: 5.0,
+                                          spreadRadius: 2.0,
+                                        ),
+                                      ],
+                                    ),
+                                    child: Text(
+                                      'Status: ${parcel.status}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
+                        )
+
                       );
                     },
                   ),
@@ -609,6 +726,81 @@ class _ParcelListPage extends State<ParcelListPage> {
             ),
           ),
         ));
+  }
+  LinearGradient _getGradientForStatus(String status) {
+    switch (status) {
+      case 'Delivery Completed':
+        return LinearGradient(
+          colors: [Colors.greenAccent, Colors.lightGreenAccent],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Delivery Pending':
+        return LinearGradient(
+          colors: [Colors.orangeAccent, Colors.deepOrangeAccent],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Delivery Cancelled':
+        return LinearGradient(
+          colors: [Colors.redAccent, Colors.red],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Payment Done':
+        return LinearGradient(
+          colors: [Colors.redAccent, Colors.red],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Payment Pending':
+        return LinearGradient(
+          colors: [Colors.redAccent, Colors.red],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Return Completed':
+        return LinearGradient(
+          colors: [Colors.redAccent, Colors.red],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Pickup Request':
+        return LinearGradient(
+          colors: [Colors.redAccent, Colors.red],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+    // Add other cases for different statuses with their respective gradients
+      default:
+        return LinearGradient(
+          colors: [Colors.grey, Colors.grey[200]!],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+    }
+  }
+
+  Color _getShadowColorForStatus(String status) {
+    switch (status) {
+      case 'Delivery Completed':
+        return Colors.greenAccent.shade400;
+      case 'Delivery Pending':
+        return Colors.orangeAccent.shade400;
+      case 'Delivery Cancelled':
+        return Colors.redAccent.shade400;
+      case 'Payment Done':
+        return Colors.blueAccent.shade400;
+      case 'Payment Pending':
+        return Colors.purpleAccent.shade400;
+      case 'Return Completed':
+        return Colors.amberAccent.shade400;
+      case 'Pickup Request':
+        return Colors.orangeAccent.shade400;
+
+      default:
+        return Colors.grey.shade400;
+    }
   }
 
   void _handleMenuButtonPressed() {
