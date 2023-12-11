@@ -17,33 +17,69 @@ import 'order_tracking.dart';
 final List<Parcel> parcels = [
   Parcel(
     invoiceId: '23120901Z00H8',
-    name: 'John Doe',
+    name: 'Tanvir Siddiqui',
     phone: '1234567890',
     address: '123 Main Street',
     charge: 50.0,
     amount: 100.0,
     brief: 'Some brief description',
-    status: 'Delivered',
+    status: 'Delivery Completed',
   ),
   Parcel(
     invoiceId: '23120901Z00H9',
-    name: 'Jane Doe',
+    name: 'Arif Siddiqui',
     phone: '0987654321',
     address: '456 Main Street',
     charge: 40.0,
     amount: 80.0,
     brief: 'Some brief description',
-    status: 'Pending',
+    status: 'Delivery Pending',
   ),
   Parcel(
     invoiceId: '23120901Z00H10',
+    name: 'Hasan Siddiqui',
+    phone: '1122334455',
+    address: '789 Main Street',
+    charge: 60.0,
+    amount: 120.0,
+    brief: 'Some brief description',
+    status: 'Delivery Cancelled',
+  ),Parcel(
+    invoiceId: '23120901Z00H11',
+    name: 'Maruf Siddiqui',
+    phone: '1122334455',
+    address: '789 Main Street',
+    charge: 60.0,
+    amount: 120.0,
+    brief: 'Some brief description',
+    status: 'Payment Done',
+  ),Parcel(
+    invoiceId: '23120901Z00H12',
     name: 'Jack Doe',
     phone: '1122334455',
     address: '789 Main Street',
     charge: 60.0,
     amount: 120.0,
     brief: 'Some brief description',
-    status: 'Cancelled',
+    status: 'Payment Pending',
+  ),Parcel(
+    invoiceId: '23120901Z00H13',
+    name: 'John Doe',
+    phone: '1122334455',
+    address: '789 Main Street',
+    charge: 60.0,
+    amount: 120.0,
+    brief: 'Some brief description',
+    status: 'Return Completed',
+  ),Parcel(
+    invoiceId: '23120901Z00H14',
+    name: 'Tanvir Arif',
+    phone: '1122334455',
+    address: '789 Main Street',
+    charge: 60.0,
+    amount: 120.0,
+    brief: 'Some brief description',
+    status: 'Pickup Request',
   ),
 ];
 
@@ -54,7 +90,7 @@ class ParcelListPage extends StatefulWidget {
   State<ParcelListPage> createState() => _ParcelListPage();
 }
 
-class _ParcelListPage extends State<ParcelListPage>{
+class _ParcelListPage extends State<ParcelListPage> {
   final _advancedDrawerController = AdvancedDrawerController();
 
   ///redundable
@@ -62,7 +98,7 @@ class _ParcelListPage extends State<ParcelListPage>{
   String selectedStatus = 'All';
 
   // A list of possible parcel statuses
-  final List<String> statuses = ['All', 'Delivered', 'Pending', 'Cancelled'];
+  final List<String> statuses = ['All', 'Delivery Completed','Delivery Pending','Delivery Cancelled', 'Payment Done', 'Payment Pending','Return Completed','Pickup Request'];
 
   // A variable to store the invoice number filter
   String invoiceNo = '';
@@ -76,23 +112,49 @@ class _ParcelListPage extends State<ParcelListPage>{
   // A variable to store the to date filter
   DateTime? toDate;
 
-  // A function to show a date picker dialog
-  Future<void> _selectDate(BuildContext context, bool isFrom) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2020),
-      lastDate: DateTime(2025),
+  // A function to show Form and date picker dialog
+  Widget _buildDateField(String labelText, DateTime? dateValue, bool isFrom) {
+    return Expanded(
+      child: TextFormField(
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: TextStyle(color: Colors.deepPurple),
+          border: OutlineInputBorder(),
+          prefixIcon: IconButton(
+            icon: Icon(Icons.calendar_month,size: 24, color: Colors.deepPurple.shade300),
+            onPressed: () async {
+              final selectedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2000),
+                lastDate: DateTime.now(),
+              );
+              if (selectedDate != null) {
+                setState(() {
+                  if (isFrom) {
+                    fromDate = selectedDate;
+                  } else {
+                    toDate = selectedDate;
+                  }
+                });
+              }
+            },
+          ),
+        ),
+        style: TextStyle(color: Colors.deepPurple),
+        controller: TextEditingController(
+          text: dateValue == null
+              ? ''
+              : '${dateValue.day}/${dateValue.month}/${dateValue.year}',
+        ),
+        onTap: () async {
+          // This will prevent the keyboard from appearing when tapping the text field
+          FocusScope.of(context).requestFocus(new FocusNode());
+          // Your existing logic here...
+        },
+      ),
     );
-    if (picked != null) {
-      setState(() {
-        if (isFrom) {
-          fromDate = picked;
-        } else {
-          toDate = picked;
-        }
-      });
-    }
   }
 
   // A function to apply the filters and return a filtered list of parcels
@@ -115,15 +177,14 @@ class _ParcelListPage extends State<ParcelListPage>{
     }
     if (fromDate != null) {
       filteredParcels = filteredParcels
-          .where((parcel) =>
-          DateTime.parse(parcel.invoiceId.substring(0, 8))
+          .where((parcel) => DateTime.parse(parcel.invoiceId.substring(0, 8))
               .isAfter(fromDate!))
           .toList();
     }
     if (toDate != null) {
       filteredParcels = filteredParcels
-          .where((parcel) =>
-          DateTime.parse(parcel.invoiceId.substring(0, 8)).isBefore(toDate!))
+          .where((parcel) => DateTime.parse(parcel.invoiceId.substring(0, 8))
+              .isBefore(toDate!))
           .toList();
     }
     return filteredParcels;
@@ -185,22 +246,32 @@ class _ParcelListPage extends State<ParcelListPage>{
                     onTap: () {
                       Get.off(() => HomePage());
                     },
-                    leading: Image.asset("assets/images/home.png",scale: 18,),
-                    title: const Text('Home',style: TextStyle(color: Colors.black)),
+                    leading: Image.asset(
+                      "assets/images/home.png",
+                      scale: 18,
+                    ),
+                    title: const Text('Home',
+                        style: TextStyle(color: Colors.black)),
                   ),
-                  Divider(color: Colors.grey,),
+                  Divider(
+                    color: Colors.grey,
+                  ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const AddParcelPage());
                     },
-                    leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
+                    leading: Image.asset(
+                      "assets/images/add_parcel_drawer.png",
+                      scale: 8,
+                    ),
                     title: const Text('Add Parcel'),
                   ),
                   ListTile(
-                    onTap: () {
-
-                    },
-                    leading: Image.asset("assets/images/total_parcel_drawer.png",scale: 8,),
+                    onTap: () {},
+                    leading: Image.asset(
+                      "assets/images/total_parcel_drawer.png",
+                      scale: 8,
+                    ),
                     title: const Text('Parcel List'),
                     tileColor: Colors.blue,
                   ),
@@ -208,63 +279,93 @@ class _ParcelListPage extends State<ParcelListPage>{
                     onTap: () {
                       Get.off(() => const OrderTrackingPage());
                     },
-                    leading: Image.asset("assets/images/waitingdelivery.png",scale: 6,),
+                    leading: Image.asset(
+                      "assets/images/waitingdelivery.png",
+                      scale: 6,
+                    ),
                     title: const Text('Order Tracking'),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const CoverageAreaPage());
                     },
-                    leading: Image.asset("assets/images/coverage.png",scale: 8,),
+                    leading: Image.asset(
+                      "assets/images/coverage.png",
+                      scale: 8,
+                    ),
                     title: const Text('Coverage Area'),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const PaymentRequestListPage());
                     },
-                    leading: Image.asset("assets/images/payment.png",scale: 8,),
+                    leading: Image.asset(
+                      "assets/images/payment.png",
+                      scale: 8,
+                    ),
                     title: const Text('Payment Request List'),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const PaymentListPage());
                     },
-                    leading: Image.asset("assets/images/payment.png",scale: 8,),
+                    leading: Image.asset(
+                      "assets/images/payment.png",
+                      scale: 8,
+                    ),
                     title: const Text('Payment List'),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const PickupParcelListPage());
                     },
-                    leading: Image.asset("assets/images/pickup.png",scale: 8,),
+                    leading: Image.asset(
+                      "assets/images/pickup.png",
+                      scale: 8,
+                    ),
                     title: const Text('Pickup Parcel List'),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const ReturnParcelListPage());
                     },
-                    leading: Image.asset("assets/images/returnnev.png",scale: 8,),
+                    leading: Image.asset(
+                      "assets/images/returnnev.png",
+                      scale: 8,
+                    ),
                     title: const Text('Return Parcel List'),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const DeliveryListPage());
                     },
-                    leading: Image.asset("assets/images/complete.png",scale: 8,),
+                    leading: Image.asset(
+                      "assets/images/complete.png",
+                      scale: 8,
+                    ),
                     title: const Text('Delivery List'),
                   ),
                   ListTile(
                     onTap: () {
                       Get.off(() => const SupportPage());
                     },
-                    leading: Image.asset("assets/images/support.png",scale: 8,),
+                    leading: Image.asset(
+                      "assets/images/support.png",
+                      scale: 8,
+                    ),
                     title: const Text('Support'),
                   ),
-                  Divider(color: Colors.grey.shade600,),
+                  Divider(
+                    color: Colors.grey.shade600,
+                  ),
                   ListTile(
                     onTap: () {},
-                    leading: Image.asset("assets/images/logout.png",scale: 8,),
-                    title: const Text('Logout',style: TextStyle(color: Colors.black)),
+                    leading: Image.asset(
+                      "assets/images/logout.png",
+                      scale: 8,
+                    ),
+                    title: const Text('Logout',
+                        style: TextStyle(color: Colors.black)),
                   ),
                   const Spacer(),
                   DefaultTextStyle(
@@ -274,9 +375,7 @@ class _ParcelListPage extends State<ParcelListPage>{
                     ),
                     child: Container(
                       margin: const EdgeInsets.symmetric(
-                          vertical: 16.0,
-                          horizontal: 16
-                      ),
+                          vertical: 16.0, horizontal: 16),
                       child: const Text('Terms of Service | Privacy Policy'),
                     ),
                   ),
@@ -286,119 +385,187 @@ class _ParcelListPage extends State<ParcelListPage>{
           ),
         ),
         child: Scaffold(
-            appBar: AppBar(
-              title: const Text('Parcel List'),
-              flexibleSpace: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xFF8B69FF), Color(0xD0165985),], // Your gradient colors here
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-              ),
-              leading: IconButton(
-                onPressed: _handleMenuButtonPressed,
-                icon: ValueListenableBuilder<AdvancedDrawerValue>(
-                  valueListenable: _advancedDrawerController,
-                  builder: (_, value, __) {
-                    return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 200),
-                      child: Icon(
-                        value.visible ? Icons.clear : Icons.menu,
-                        key: ValueKey<bool>(value.visible),
-                      ),
-                    );
-                  },
+          appBar: AppBar(
+            title: const Text('Parcel List'),
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF8B69FF),
+                    Color(0xD0165985),
+                  ], // Your gradient colors here
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
               ),
             ),
-            body: Column(
+            leading: IconButton(
+              onPressed: _handleMenuButtonPressed,
+              icon: ValueListenableBuilder<AdvancedDrawerValue>(
+                valueListenable: _advancedDrawerController,
+                builder: (_, value, __) {
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 200),
+                    child: Icon(
+                      value.visible ? Icons.clear : Icons.menu,
+                      key: ValueKey<bool>(value.visible),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          body: Container(
+            padding: const EdgeInsets.all(15),
+            child: Column(
               children: [
-                // A dropdown to select the parcell status
-                DropdownButton<String>(
-                  value: selectedStatus,
-                  items: statuses
-                      .map((status) => DropdownMenuItem<String>(
-                    value: status,
-                    child: Text(status),
-                  ))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      selectedStatus = value!;
-                    });
-                  },
-                ),
-                // A row to enter the invoice number and the merchant order number
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'Invoice No',
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12, // Shadow color
+                          spreadRadius: 2, // Spread radius
+                          blurRadius: 5, // Blur radius
+                          offset: Offset(0, 3), // Offset
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            invoiceNo = value;
-                          });
-                        },
+                      ],
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      gradient: LinearGradient(
+                        colors: [Color(0xFF8B69FF), Color(0xD0165985)],
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
                       ),
                     ),
-                    Expanded(
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'Merchant Order No',
+                    child: ExpansionTile(
+                      collapsedIconColor: Colors.white,
+                      iconColor: Colors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      leading: Icon(Icons.filter_list, color: Colors.white),
+                      title: const Center(
+                        child: Text(
+                          'Filter',
+                          style: TextStyle(color: Colors.white,fontSize: 20),
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            merchantOrderNo = value;
-                          });
-                        },
                       ),
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(color: Colors.white),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                // A dropdown to select the parcel status
+                                DropdownButtonFormField<String>(
+                                  value: selectedStatus,
+                                  decoration: InputDecoration(
+                                    labelText: 'Category',
+                                    prefixIcon: Icon(Icons.category,
+                                        color: Colors.deepPurple.shade300),
+                                    border: const OutlineInputBorder(),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                      BorderSide(color: Colors.deepPurple.shade300),
+                                    ),
+                                    labelStyle:
+                                    const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                  items: statuses
+                                      .map((address) => DropdownMenuItem(
+                                    value: address,
+                                    child: Text(address,style: TextStyle(
+                                        color: Colors.deepPurple.shade300,
+                                        // fontWeight: FontWeight.normal
+                                    ),
+                                    ),
+                                  ))
+                                      .toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedStatus = value!;
+                                    });
+                                  },
+                                ),
+                                const SizedBox(height: 10.0),
+                                // A row to enter the invoice number and the merchant order number
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: TextFormField(
+                                        decoration: const InputDecoration(
+                                          labelText: 'Invoice No',
+                                          labelStyle:
+                                          TextStyle(color: Colors.deepPurple),
+                                          border: OutlineInputBorder(),
+                                        ),
+                                        onChanged: (value) {
+                                          setState(() {
+                                            invoiceNo = value;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10.0),
+                                    Expanded(
+                                      child: TextFormField(
+                                        decoration: const InputDecoration(
+                                          labelText: 'Merchant Order No',
+                                          labelStyle:
+                                          TextStyle(color: Colors.deepPurple),
+                                          border: OutlineInputBorder(),
+                                        ),
+                                        onChanged: (value) {
+                                          setState(() {
+                                            merchantOrderNo = value;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                // A row to select the from date and the to date
+                                Row(
+                                  children: [
+                                    _buildDateField(
+                                      'From Date',
+                                      fromDate,
+                                      true,
+                                    ),
+                                    const SizedBox(width: 10.0),
+                                    _buildDateField(
+                                      'To Date',
+                                      toDate,
+                                      false,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-                // A row to select the from date and the to date
-                Row(
-                  children: [
-                    Expanded(
-                      child: ListTile(
-                        title: const Text('From Date'),
-                        subtitle: Text(fromDate == null
-                            ? 'Not Selected'
-                            : '${fromDate!.day}/${fromDate!.month}/${fromDate!.year}'),
-                        onTap: () {
-                          _selectDate(context, true);
-                        },
-                      ),
-                    ),
-                    Expanded(
-                      child: ListTile(
-                        title: const Text('To Date'),
-                        subtitle: Text(toDate == null
-                            ? 'Not Selected'
-                            : '${toDate!.day}/${toDate!.month}/${toDate!.year}'),
-                        onTap: () {
-                          _selectDate(context, false);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                // A button to apply the filters
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {});
-                  },
-                  child: const Text('Filter'),
-                ),
+
                 // A list view to display the filtered parcels
                 Expanded(
                   child: ListView.builder(
                     itemCount: _applyFilters().length,
                     itemBuilder: (context, index) {
-                      final parcell = _applyFilters()[index];
+                      final parcel = _applyFilters()[index];
                       return GestureDetector(
                         onTap: () {
                           // Do something when the card is tapped
@@ -411,21 +578,24 @@ class _ParcelListPage extends State<ParcelListPage>{
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Customer Invoice ID: ${parcell.invoiceId}'),
-                                Text('Customer Name: ${parcell.name}'),
-                                Text('Customer Phone Number: ${parcell.phone}'),
-                                Text('Customer Address: ${parcell.address}'),
-                                Text('Total Charge: ${parcell.charge}'),
-                                Text('Total Collection Amount: ${parcell.amount}'),
-                                Text('Parcel Brief: ${parcell.brief}'),
+                                Text(
+                                    'Customer Invoice ID: ${parcel.invoiceId}'),
+                                Text('Customer Name: ${parcel.name}'),
+                                Text('Customer Phone Number: ${parcel.phone}'),
+                                Text('Customer Address: ${parcel.address}'),
+                                Text('Total Charge: ${parcel.charge}'),
+                                Text(
+                                    'Total Collection Amount: ${parcel.amount}'),
+                                Text('Parcel Brief: ${parcel.brief}'),
                                 // Use a bordered text to display the status
                                 Container(
                                   padding: const EdgeInsets.all(4.0),
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.deepPurple),
+                                    border:
+                                        Border.all(color: Colors.deepPurple),
                                     borderRadius: BorderRadius.circular(4.0),
                                   ),
-                                  child: Text(parcell.status),
+                                  child: Text(parcel.status),
                                 ),
                               ],
                             ),
@@ -437,8 +607,8 @@ class _ParcelListPage extends State<ParcelListPage>{
                 ),
               ],
             ),
-        )
-    );
+          ),
+        ));
   }
 
   void _handleMenuButtonPressed() {
@@ -446,6 +616,4 @@ class _ParcelListPage extends State<ParcelListPage>{
     // _advancedDrawerController.value = AdvancedDrawerValue.visible();
     _advancedDrawerController.showDrawer();
   }
-
-
 }
