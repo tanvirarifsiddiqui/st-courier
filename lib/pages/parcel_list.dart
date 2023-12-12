@@ -689,23 +689,25 @@ class _ParcelListPage extends State<ParcelListPage> {
                                       Icons.description),
 
                                 // Container at the bottom with dynamic design
-                                Center(
+                                Container(
+                                  margin: const EdgeInsets.only(top: 16.0),
+                                  padding: const EdgeInsets.all(8.0),
+                                  decoration: BoxDecoration(
+                                    gradient: _getGradientForStatus(parcel.status),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: _getShadowColorForStatus(parcel.status),
+                                        blurRadius: 5.0,
+                                        spreadRadius: 2.0,
+                                      ),
+                                    ],
+                                  ),
                                   child: Container(
-                                    margin: const EdgeInsets.only(top: 16.0),
-                                    padding: const EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                      gradient: _getGradientForStatus(parcel.status),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: _getShadowColorForStatus(parcel.status),
-                                          blurRadius: 5.0,
-                                          spreadRadius: 2.0,
-                                        ),
-                                      ],
-                                    ),
+                                    width: MediaQuery.of(context).size.width,
                                     child: Text(
-                                      'Status: ${parcel.status}',
+                                      parcel.status,
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -731,43 +733,43 @@ class _ParcelListPage extends State<ParcelListPage> {
     switch (status) {
       case 'Delivery Completed':
         return LinearGradient(
-          colors: [Colors.greenAccent, Colors.lightGreenAccent],
+          colors: [Color(0xff6e44a8), Color(0xff1e7e6c), Color(0xff0b8371),],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
       case 'Delivery Pending':
         return LinearGradient(
-          colors: [Colors.orangeAccent, Colors.deepOrangeAccent],
+          colors: [Color(0xff6e44a8), Color(0xffce5300), Color(0xffd28800)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
       case 'Delivery Cancelled':
         return LinearGradient(
-          colors: [Colors.redAccent, Colors.red],
+          colors: [Color(0xff6e44a8), Color(0xffa60b2f),Color(0xffd70032),],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
       case 'Payment Done':
         return LinearGradient(
-          colors: [Colors.redAccent, Colors.red],
+          colors: [Color(0xff6e44a8),Color(0xff0e800e), Color(0xff00cc00)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
       case 'Payment Pending':
         return LinearGradient(
-          colors: [Colors.redAccent, Colors.red],
+          colors: [Color(0xff6e44a8), Color(0xffc0a40e), Color(0xffd7b900)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
       case 'Return Completed':
         return LinearGradient(
-          colors: [Colors.redAccent, Colors.red],
+          colors: [Color(0xff6e44a8), Color(0xff006280), Color(0xff167091)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
       case 'Pickup Request':
         return LinearGradient(
-          colors: [Colors.redAccent, Colors.red],
+          colors: [Color(0xff6e44a8), Color(0xff3a4aff), Color(0xff2b69e1)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
@@ -786,17 +788,17 @@ class _ParcelListPage extends State<ParcelListPage> {
       case 'Delivery Completed':
         return Colors.greenAccent.shade400;
       case 'Delivery Pending':
-        return Colors.orangeAccent.shade400;
+        return Colors.amber.shade700;
       case 'Delivery Cancelled':
         return Colors.redAccent.shade400;
       case 'Payment Done':
-        return Colors.blueAccent.shade400;
+        return Colors.lightGreenAccent.shade400;
       case 'Payment Pending':
-        return Colors.purpleAccent.shade400;
+        return Colors.yellowAccent.shade400;
       case 'Return Completed':
-        return Colors.amberAccent.shade400;
+        return Colors.cyanAccent;
       case 'Pickup Request':
-        return Colors.orangeAccent.shade400;
+        return Colors.blueAccent.shade400;
 
       default:
         return Colors.grey.shade400;
