@@ -253,7 +253,7 @@ List<CoverageArea> coverageAreaDataList = [
       zip: '8300',
       service: 'Barisal Outskirts',
       cod: 50),
-  CoverageArea(*****
+  CoverageArea(
       area: 'Barisal - Patuakhali',
       district: 'Barisal',
       zip: '8600',
