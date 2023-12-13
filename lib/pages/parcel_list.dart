@@ -12,81 +12,8 @@ import 'package:st_courier/pages/pick_up_parcel_list.dart';
 import 'package:st_courier/pages/return_parcel_list.dart';
 import 'package:st_courier/pages/support.dart';
 import '../Models/parcel_list_model.dart';
+import '../objects/parcel_objects.dart';
 import 'order_tracking.dart';
-
-// A list of sample parcel objects
-final List<Parcel> parcels = [
-  Parcel(
-    invoiceId: '23120901Z00H8',
-    name: 'Tanvir Siddiqui',
-    phone: '1234567890',
-    address: '123 Main Street',
-    charge: 50.0,
-    amount: 100.0,
-    brief: 'Some brief description',
-    status: 'Delivery Completed',
-  ),
-  Parcel(
-    invoiceId: '23120901Z00H9',
-    name: 'Arif Siddiqui',
-    phone: '0987654321',
-    address: '456 Main Street',
-    charge: 40.0,
-    amount: 80.0,
-    brief: 'Some brief description',
-    status: 'Delivery Pending',
-  ),
-  Parcel(
-    invoiceId: '23120901Z00H10',
-    name: 'Hasan Siddiqui',
-    phone: '1122334455',
-    address: '789 Main Street',
-    charge: 60.0,
-    amount: 120.0,
-    brief: 'Some brief description',
-    status: 'Delivery Cancelled',
-  ),
-  Parcel(
-    invoiceId: '23120901Z00H11',
-    name: 'Maruf Siddiqui',
-    phone: '1122334455',
-    address: '789 Main Street',
-    charge: 60.0,
-    amount: 120.0,
-    brief: 'Some brief description',
-    status: 'Payment Done',
-  ),
-  Parcel(
-    invoiceId: '23120901Z00H12',
-    name: 'Jack Doe',
-    phone: '1122334455',
-    address: '789 Main Street',
-    charge: 60.0,
-    amount: 120.0,
-    brief: 'Some brief description',
-    status: 'Payment Pending',
-  ),
-  Parcel(
-    invoiceId: '23120901Z00H13',
-    name: 'John Doe',
-    phone: '1122334455',
-    address: '789 Main Street',
-    charge: 60.0,
-    amount: 120.0,
-    brief: 'Some brief description',
-    status: 'Return Completed',
-  ),
-  Parcel(
-    invoiceId: '23120901Z00H14',
-    name: 'Tanvir Arif',
-    phone: '1122334455',
-    address: '789 Main Street',
-    charge: 60.0,
-    amount: 120.0,
-    brief: 'Some brief description',
-    status: 'Pickup Request',
-  ),
-];
 
 class ParcelListPage extends StatefulWidget {
   const ParcelListPage({Key? key}) : super(key: key);

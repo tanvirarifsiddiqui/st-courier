@@ -22,6 +22,10 @@ class OrderTrackingPage extends StatefulWidget {
 
 class _OrderTrackingPage extends State<OrderTrackingPage>{
   final _advancedDrawerController = AdvancedDrawerController();
+
+  // A variable to store the invoice number filter
+  String invoiceNo = '';
+
   @override
   Widget build(BuildContext context) {
     return AdvancedDrawer(
@@ -206,27 +210,98 @@ class _OrderTrackingPage extends State<OrderTrackingPage>{
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    ],
+            body: Container(
+              padding: const EdgeInsets.all(20.0),
+              child: ListView(
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Invoice No',
+                      labelStyle: TextStyle(
+                          color: Colors.deepPurple),
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        invoiceNo = value;
+                      });
+                    },
                   ),
-                ),
+                  const SizedBox(height: 5.0),
+                  GestureDetector(
+                    onTap: () {
+                      // Get.to(()=> AddParcellPage());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 20),
+                          child: Container(
+                            height: 45,
+                            width: 250,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.deepPurpleAccent.withOpacity(0.9),
+                                  Colors.blue.shade900.withOpacity(0.5)
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(
+                                      0, 3), // changes the position of shadow
+                                ),
+                              ],
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Filter',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 20.0),
+                  // Card(
+                  //   elevation: 4,
+                  //   color: Colors.purple.shade50,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(15.0),
+                  //     child: Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.stretch,
+                  //       children: [
+                  //         // buildCardRow('Collection Amount:', '0.0 Tk', Icons.attach_money),
+                  //         // buildCardRow('Weight Charge:', '0.0 Tk', Icons.fitness_center),
+                  //         // buildCardRow('Delivery Charge:', '0.0 Tk', Icons.local_shipping),
+                  //         // buildCardRow('COD Charge:', '0.0 Tk', Icons.payment),
+                  //         // Divider(),
+                  //         // buildCardRow('Total Charge:', '0.0 Tk', Icons.calculate),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+
+
+                  const SizedBox(height: 20.0),
+
+                ],
               ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              //something todo
-              const SizedBox(height: 15,),
-              //something todo
-            ]
             )
+
         )
     );
   }

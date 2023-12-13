@@ -101,11 +101,12 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 10),
 
               // Profile Information
               Card(
-                elevation: 5.0,
+                color: Colors.purple.shade50,
+                elevation: 4.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
@@ -243,11 +244,12 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 2.0),
+              SizedBox(height: 10.0),
 
               // Pickup Information
               Card(
-                elevation: 5.0,
+                color: Colors.purple.shade50,
+                elevation: 4.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
@@ -297,11 +299,12 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 2.0),
+              SizedBox(height: 10.0),
 
               // Payment Information
               Card(
-                elevation: 5.0,
+                color: Colors.purple.shade50,
+                elevation: 4.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
@@ -467,11 +470,12 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 2.0),
+              SizedBox(height: 10.0),
 
               // Delivery Charge
               Card(
-                elevation: 5.0,
+                color: Colors.purple.shade50,
+                elevation: 4.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),

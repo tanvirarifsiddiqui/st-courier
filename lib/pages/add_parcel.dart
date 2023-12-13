@@ -488,6 +488,8 @@ class _AddParcelPage extends State<AddParcelPage> {
                 ),
                 const SizedBox(height: 20.0),
               Card(
+                elevation: 4,
+                color: Colors.purple.shade50,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
