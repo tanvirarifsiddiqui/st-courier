@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
+import 'package:st_courier/objects/coverage_area_objects.dart';
 import 'package:st_courier/pages/delivery_list.dart';
 import 'package:st_courier/pages/home.dart';
 import 'package:st_courier/pages/order_tracking.dart';
@@ -205,26 +206,156 @@ class _CoverageAreaPage extends State<CoverageAreaPage>{
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    ],
+            body: ListView.builder(
+              itemCount: coverageAreaDataList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  elevation: 6,
+                  color: Colors.purple.shade50,
+                  margin: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Table(
+                      columnWidths: {
+                        0: FlexColumnWidth(1), // Adjust column width as needed
+                        1: FlexColumnWidth(2), // Adjust column width as needed
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            const TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.location_on,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                    SizedBox(width: 5), // Adjust spacing as needed
+                                    Text("Area"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(": ${coverageAreaDataList[index].area}"),
+                                  ],
+                                ),
+                              ),
+                              // columnSpan: 2,
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            const TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.apartment,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                    SizedBox(width: 5), // Adjust spacing as needed
+                                    Text("District"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Text(": ${coverageAreaDataList[index].district}"),
+                              ),
+                            ),
+                            // TableCell.empty(), // This cell is intentionally empty to create the merging effect
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            const TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.markunread_mailbox,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                    SizedBox(width: 5), // Adjust spacing as needed
+                                    Text("Zip"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(": ${coverageAreaDataList[index].zip}"),
+                                  ],
+                                ),
+                              ),
+                              // columnSpan: 2,
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            const TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.build,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                    SizedBox(width: 5), // Adjust spacing as needed
+                                    Text("Service"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Text(": ${coverageAreaDataList[index].service}"),
+                              ),
+                            ),
+                            // TableCell.empty(), // This cell is intentionally empty to create the merging effect
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            const TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.payment,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                    SizedBox(width: 5), // Adjust spacing as needed
+                                    Text("COD"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(": ${coverageAreaDataList[index].cod} %"),
+                                  ],
+                                ),
+                              ),
+                              // columnSpan: 2,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              //something todo
-              const SizedBox(height: 15,),
-              //something todo
-            ]
+                );
+              },
             )
         )
     );
