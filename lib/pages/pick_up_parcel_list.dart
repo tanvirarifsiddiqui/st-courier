@@ -22,6 +22,59 @@ class PickupParcelListPage extends StatefulWidget {
 
 class _PickupParcelListPage extends State<PickupParcelListPage>{
   final _advancedDrawerController = AdvancedDrawerController();
+
+  // A variable to store the from date filter
+  DateTime? fromDate;
+
+  // A variable to store the to date filter
+  DateTime? toDate;
+
+  // A function to show Form and date picker dialog
+  Widget _buildDateField(String labelText, DateTime? dateValue, bool isFrom) {
+    return Expanded(
+      child: TextFormField(
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: const TextStyle(color: Colors.deepPurple),
+          border: const OutlineInputBorder(),
+          prefixIcon: IconButton(
+            icon: Icon(Icons.calendar_month,
+                size: 24, color: Colors.deepPurple.shade300),
+            onPressed: () async {
+              final selectedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2000),
+                lastDate: DateTime.now(),
+              );
+              if (selectedDate != null) {
+                setState(() {
+                  if (isFrom) {
+                    fromDate = selectedDate;
+                  } else {
+                    toDate = selectedDate;
+                  }
+                });
+              }
+            },
+          ),
+        ),
+        style: const TextStyle(color: Colors.deepPurple),
+        controller: TextEditingController(
+          text: dateValue == null
+              ? ''
+              : '${dateValue.day}/${dateValue.month}/${dateValue.year}',
+        ),
+        onTap: () async {
+          // This will prevent the keyboard from appearing when tapping the text field
+          FocusScope.of(context).requestFocus(new FocusNode());
+          // Your existing logic here...
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AdvancedDrawer(
@@ -205,26 +258,98 @@ class _PickupParcelListPage extends State<PickupParcelListPage>{
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            body: Container(
+              padding: const EdgeInsets.all(15.0),
+              child: ListView(
+                children: [
+                  Row(
                     children: [
+                      _buildDateField(
+                        'From Date',
+                        fromDate,
+                        true,
+                      ),
+                      const SizedBox(width: 10.0),
+                      _buildDateField(
+                        'To Date',
+                        toDate,
+                        false,
+                      ),
                     ],
                   ),
-                ),
+                  const SizedBox(height: 5.0),
+                  GestureDetector(
+                    onTap: () {
+                      // Get.to(()=> AddParcellPage());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 20),
+                          child: Container(
+                            height: 45,
+                            width: 250,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.deepPurpleAccent.withOpacity(0.9),
+                                  Colors.blue.shade900.withOpacity(0.5)
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(
+                                      0, 3), // changes the position of shadow
+                                ),
+                              ],
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Filter',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 20.0),
+                  // Card(
+                  //   elevation: 4,
+                  //   color: Colors.purple.shade50,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(15.0),
+                  //     child: Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.stretch,
+                  //       children: [
+                  //         // buildCardRow('Collection Amount:', '0.0 Tk', Icons.attach_money),
+                  //         // buildCardRow('Weight Charge:', '0.0 Tk', Icons.fitness_center),
+                  //         // buildCardRow('Delivery Charge:', '0.0 Tk', Icons.local_shipping),
+                  //         // buildCardRow('COD Charge:', '0.0 Tk', Icons.payment),
+                  //         // Divider(),
+                  //         // buildCardRow('Total Charge:', '0.0 Tk', Icons.calculate),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+
+
+                  const SizedBox(height: 20.0),
+
+                ],
               ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              //something todo
-              const SizedBox(height: 15,),
-              //something todo
-            ]
             )
         )
     );
