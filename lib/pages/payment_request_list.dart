@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
+import 'package:st_courier/objects/payment_request_objects.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
 import 'package:st_courier/pages/home.dart';
@@ -205,29 +206,123 @@ class _PaymentRequestListPage extends State<PaymentRequestListPage>{
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    ],
+            body: ListView.builder(
+              itemCount: paymentRequests.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  elevation: 4,
+                  color: Colors.purple.shade50,
+                  margin: const EdgeInsets.symmetric(vertical: 6.0,horizontal: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(Icons.confirmation_number,
+                                      color: Color(0xFF8B69FF)),
+                                  const SizedBox(width: 10.0),
+                                  Text(
+                                    paymentRequests[index].paymentNo,
+                                    style: const TextStyle(
+                                        color: Colors.red),
+                                  ),
+                                ],
+                              ),
+                              Text(paymentRequests[index].status,
+                                style: TextStyle(color: _getColorForStatus(paymentRequests[index].status)),)
+                            ],
+                          ),
+                        ),
+                        Table(
+                          columnWidths: {
+                            0: FlexColumnWidth(1), // Adjust column width as needed
+                            1: FlexColumnWidth(4), // Adjust column width as needed
+                          },
+                          children: [
+                            TableRow(
+                              children: [
+                                const TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.note,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                        SizedBox(width: 5), // Adjust spacing as needed
+                                        Text("Note"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(": ${paymentRequests[index].note}"),
+                                      ],
+                                    ),
+                                  ),
+                                  // columnSpan: 2,
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                const TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.date_range,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                        SizedBox(width: 5), // Adjust spacing as needed
+                                        Text("Date"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Text(": ${paymentRequests[index].date}"),
+                                  ),
+                                ),
+                                // TableCell.empty(), // This cell is intentionally empty to create the merging effect
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              //something todo
-              const SizedBox(height: 15,),
-              //something todo
-            ]
+                );
+              },
             )
         )
     );
+  }
+
+  Color _getColorForStatus(String status) {
+    switch (status) {
+      case 'Accepted':
+        return Colors.green.shade800;
+      case 'Paid':
+        return Colors.blue.shade800;
+      case 'Rejected':
+        return Colors.red.shade800;
+      case 'Pending':
+        return Colors.teal.shade800;
+
+      default:
+        return Colors.grey.shade400;
+    }
+
   }
 
   void _handleMenuButtonPressed() {
