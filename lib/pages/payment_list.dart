@@ -11,6 +11,7 @@ import 'package:st_courier/pages/pick_up_parcel_list.dart';
 import 'package:st_courier/pages/return_parcel_list.dart';
 import 'package:st_courier/pages/support.dart';
 
+import '../objects/payment_objects.dart';
 import 'add_parcel.dart';
 
 class PaymentListPage extends StatefulWidget {
@@ -205,28 +206,189 @@ class _PaymentListPage extends State<PaymentListPage>{
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    ],
+            body: ListView.builder(
+              itemCount: payments.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  elevation: 4,
+                  color: Colors.purple.shade50,
+                  margin: const EdgeInsets.symmetric(vertical: 6.0,horizontal: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(Icons.confirmation_number,
+                                      color: Color(0xFF8B69FF)),
+                                  const SizedBox(width: 10.0),
+                                  Text(
+                                    payments[index].paymentNo,
+                                    style: const TextStyle(
+                                        color: Colors.red),
+                                  ),
+                                ],
+                              ),
+                              Text(payments[index].status,
+                                style: TextStyle(color: Color(0xFF25009B)),)
+                            ],
+                          ),
+                        ),
+                        Table(
+                          columnWidths: {
+                            0: FlexColumnWidth(1), // Adjust column width as needed
+                            1: FlexColumnWidth(2), // Adjust column width as needed
+                          },
+                          children: [
+                            TableRow(
+                              children: [
+                                const TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.backpack,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                        SizedBox(width: 5), // Adjust spacing as needed
+                                        Text("Parcel"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(": ${payments[index].totalParcel}"),
+                                      ],
+                                    ),
+                                  ),
+                                  // columnSpan: 2,
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                const TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.local_shipping,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                        SizedBox(width: 5), // Adjust spacing as needed
+                                        Text("Rcv Parcel"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(": ${payments[index].rcvParcel}"),
+                                      ],
+                                    ),
+                                  ),
+                                  // columnSpan: 2,
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                const TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.attach_money,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                        SizedBox(width: 5), // Adjust spacing as needed
+                                        Text("Amt"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(": ${payments[index].amt}"),
+                                      ],
+                                    ),
+                                  ),
+                                  // columnSpan: 2,
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                const TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.paid,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                        SizedBox(width: 5), // Adjust spacing as needed
+                                        Text("Rcv Amt"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(": ${payments[index].rcvAmt}"),
+                                      ],
+                                    ),
+                                  ),
+                                  // columnSpan: 2,
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                const TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.date_range,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                        SizedBox(width: 5), // Adjust spacing as needed
+                                        Text("Date"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Text(": ${payments[index].date}"),
+                                  ),
+                                ),
+                                // TableCell.empty(), // This cell is intentionally empty to create the merging effect
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              //something todo
-              const SizedBox(height: 15,),
-              //something todo
-            ]
+                );
+              },
             )
-        )
+            )
     );
   }
 

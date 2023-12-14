@@ -1,4 +1,4 @@
-// A class to represent payment object
+// A class to represent payment Request object
 class PaymentRequest {
   final String paymentNo;
   final String status;
