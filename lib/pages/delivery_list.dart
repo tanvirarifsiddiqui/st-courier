@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
+import 'package:st_courier/objects/delivery_parcel_objects.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/home.dart';
 import 'package:st_courier/pages/order_tracking.dart';
@@ -22,6 +23,55 @@ class DeliveryListPage extends StatefulWidget {
 
 class _DeliveryListPage extends State<DeliveryListPage>{
   final _advancedDrawerController = AdvancedDrawerController();
+
+  // A variable to store the from date filter
+  DateTime? fromDate;
+
+  // A variable to store the to date filter
+  DateTime? toDate;
+
+  // A function to show Form and date picker dialog
+  Widget _buildDateField(String labelText, DateTime? dateValue, bool isFrom) {
+    return Expanded(
+      child: TextFormField(
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: const TextStyle(color: Colors.deepPurple),
+          border: const OutlineInputBorder(),
+          prefixIcon: Icon(Icons.calendar_month,
+              size: 24, color: Colors.deepPurple.shade300),
+        ),
+        style: const TextStyle(color: Colors.deepPurple),
+        controller: TextEditingController(
+          text: dateValue == null
+              ? ''
+              : '${dateValue.day}/${dateValue.month}/${dateValue.year}',
+        ),
+        onTap: () async {
+          // This will prevent the keyboard from appearing when tapping the text field
+          FocusScope.of(context).requestFocus(new FocusNode());
+          // Your existing logic here...
+          final selectedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2000),
+            lastDate: DateTime.now(),
+          );
+          if (selectedDate != null) {
+            setState(() {
+              if (isFrom) {
+                fromDate = selectedDate;
+              } else {
+                toDate = selectedDate;
+              }
+            });
+          }
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AdvancedDrawer(
@@ -205,26 +255,315 @@ class _DeliveryListPage extends State<DeliveryListPage>{
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            body: Container(
+              padding: const EdgeInsets.only(top: 15.0,left: 10,right: 10),
+              child: Column(
+                children: [
+                  Row(
                     children: [
+                      _buildDateField(
+                        'From Date',
+                        fromDate,
+                        true,
+                      ),
+                      const SizedBox(width: 10.0),
+                      _buildDateField(
+                        'To Date',
+                        toDate,
+                        false,
+                      ),
                     ],
                   ),
-                ),
+                  const SizedBox(height: 5.0),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: deliveryParcelList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          elevation: 6,
+                          color: Colors.purple.shade50,
+                          margin: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 8),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.receipt,
+                                          color: Color(0xFF8B69FF)),
+                                      const SizedBox(width: 10.0),
+                                      Text(
+                                        deliveryParcelList[index].invoiceId,
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            color: Color(0xFF1A0077)
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Table(
+                                  columnWidths: {
+                                    0: FlexColumnWidth(3), // Adjust column width as needed
+                                    1: FlexColumnWidth(1), // Adjust column width as needed
+                                  },
+                                  children: [
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.monetization_on,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("Total Collect Amount",style: TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Text(": ${deliveryParcelList[index].totalCollectAmount}",style: const TextStyle(fontSize: 16)),
+                                          ),
+                                        ),
+                                        // TableCell.empty(), // This cell is intentionally empty to create the merging effect
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.payment,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("COD Percent",style: TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(": ${deliveryParcelList[index].cod} %",style: const TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                          // columnSpan: 2,
+                                        ),
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.local_atm,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("COD Charge",style: TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(": ${deliveryParcelList[index].codCharge}",style: const TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                          // columnSpan: 2,
+                                        ),
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.local_post_office,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("Package",style: TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Text(": ${deliveryParcelList[index].package}",style: const TextStyle(fontSize: 16)),
+                                          ),
+                                        ),
+                                        // TableCell.empty(), // This cell is intentionally empty to create the merging effect
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.local_shipping,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("Delivery Charge",style: TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(": ${deliveryParcelList[index].deliveryCharge}",style: const TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                          // columnSpan: 2,
+                                        ),
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.undo,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("Return Charge",style: TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(": ${deliveryParcelList[index].returnCharge}",style: const TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                          // columnSpan: 2,
+                                        ),
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.account_balance_wallet,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("Customer Collect Amount",style: TextStyle(fontSize: 16),),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(": ${deliveryParcelList[index].customerCollectAmount}",style: const TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                          // columnSpan: 2,
+                                        ),
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.calculate,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("Total Charge",style: TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(": ${deliveryParcelList[index].totalCharge}",style: const TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                          // columnSpan: 2,
+                                        ),
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        const TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.check_circle,color: Color(0xFF8B69FF),), // Add your desired icon here
+                                                SizedBox(width: 5), // Adjust spacing as needed
+                                                Text("Paid Amount",style: TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(": ${deliveryParcelList[index].paidAmount}",style: const TextStyle(fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                          // columnSpan: 2,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  )
+
+                ],
               ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              //something todo
-              const SizedBox(height: 15,),
-              //something todo
-            ]
             )
         )
     );
