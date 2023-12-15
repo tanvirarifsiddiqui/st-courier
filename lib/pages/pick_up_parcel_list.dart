@@ -38,27 +38,8 @@ class _PickupParcelListPage extends State<PickupParcelListPage>{
           labelText: labelText,
           labelStyle: const TextStyle(color: Colors.deepPurple),
           border: const OutlineInputBorder(),
-          prefixIcon: IconButton(
-            icon: Icon(Icons.calendar_month,
-                size: 24, color: Colors.deepPurple.shade300),
-            onPressed: () async {
-              final selectedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2000),
-                lastDate: DateTime.now(),
-              );
-              if (selectedDate != null) {
-                setState(() {
-                  if (isFrom) {
-                    fromDate = selectedDate;
-                  } else {
-                    toDate = selectedDate;
-                  }
-                });
-              }
-            },
-          ),
+          prefixIcon: Icon(Icons.calendar_month,
+              size: 24, color: Colors.deepPurple.shade300),
         ),
         style: const TextStyle(color: Colors.deepPurple),
         controller: TextEditingController(
@@ -70,6 +51,21 @@ class _PickupParcelListPage extends State<PickupParcelListPage>{
           // This will prevent the keyboard from appearing when tapping the text field
           FocusScope.of(context).requestFocus(new FocusNode());
           // Your existing logic here...
+          final selectedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2000),
+            lastDate: DateTime.now(),
+          );
+          if (selectedDate != null) {
+            setState(() {
+              if (isFrom) {
+                fromDate = selectedDate;
+              } else {
+                toDate = selectedDate;
+              }
+            });
+          }
         },
       ),
     );
