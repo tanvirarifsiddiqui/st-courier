@@ -206,27 +206,235 @@ class _SupportPage extends State<SupportPage>{
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
+            body: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Button: Payment Request
+                  GestureDetector(
+                    onTap: () {
+                      // Get.to(()=> AddParcellPage());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 20),
+                          child: Container(
+                            height: 45,
+                            width: 250,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.red.shade900.withOpacity(0.9),
+                                  Colors.redAccent.shade700.withOpacity(0.5)
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(6),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(
+                                      0, 3), // changes the position of shadow
+                                ),
+                              ],
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'PAYMENT REQUEST',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  // Text: Hot Line
+                  Text(
+                    'Hot Line',
+                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8.0),
+                  // Row: Call Icon and Text
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // Call Icon (Asset Image)
+                      Image.asset(
+                        'assets/images/phonecall.png',
+                        width: 24.0,
+                        height: 24.0,
+                      ),
+                      SizedBox(width: 8.0),
+                      // Text: 01757769498
+                      Text(
+                        '01757769498',
+                        style: TextStyle(fontSize: 16.0),
+                      ),
                     ],
                   ),
-                ),
+                  SizedBox(height: 16.0),
+                  // Row: Fb asset image and Text
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Fb asset image
+                      Image.asset(
+                        'assets/images/facebook.png',
+                        width: 24.0,
+                        height: 24.0,
+                      ),
+                      SizedBox(width: 8.0),
+                      // Text: Facebook Page
+                      Text(
+                        'Facebook Page',
+                        style: TextStyle(fontSize: 16.0),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16.0),
+                  // Button: Send Message
+                  GestureDetector(
+                    onTap: () {
+                      // Get.to(()=> AddParcellPage());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 20),
+                          child: Container(
+                            height: 45,
+                            width: 250,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.deepPurpleAccent.withOpacity(0.9),
+                                  Colors.blue.shade900.withOpacity(0.5)
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(
+                                      0, 3), // changes the position of shadow
+                                ),
+                              ],
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Filter',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  // Row: Whatsapp asset image and Text
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Whatsapp asset image
+                      Image.asset(
+                        'assets/images/whatsapp.png',
+                        width: 24.0,
+                        height: 24.0,
+                      ),
+                      SizedBox(width: 8.0),
+                      // Text: Online Support
+                      Text(
+                        'Online Support',
+                        style: TextStyle(fontSize: 16.0),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16.0),
+
+                  // Button: Send Message
+                  GestureDetector(
+                    onTap: () {
+                      // Get.to(()=> AddParcellPage());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 20),
+                          child: Container(
+                            height: 45,
+                            width: 250,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.deepPurpleAccent.withOpacity(0.9),
+                                  Colors.blue.shade900.withOpacity(0.5)
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(
+                                      0, 3), // changes the position of shadow
+                                ),
+                              ],
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Filter',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 16.0),
+                  // Text: Corporate Office (bold)
+                  Text(
+                    'Corporate Office',
+                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8.0),
+                  // Text: House: 25/2, Lake Circus Road Kalabagan, Dhaka 1205
+                  const Text(
+                    'House: 25/2, Lake Circus Road Kalabagan, Dhaka 1205',textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ],
               ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              //something todo
-              const SizedBox(height: 15,),
-              //something todo
-            ]
-            )
+            ),
         )
     );
   }
