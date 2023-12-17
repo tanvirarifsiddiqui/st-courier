@@ -226,12 +226,11 @@ class _SupportPage extends State<SupportPage>{
                             height: 45,
                             width: 250,
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
                                 colors: [
-                                  Colors.red.shade900.withOpacity(0.9),
-                                  Colors.redAccent.shade700.withOpacity(0.5)
+                                  Color(0xFF680404), Color(0xFFA80202),
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(6),
@@ -267,24 +266,17 @@ class _SupportPage extends State<SupportPage>{
                   ),
                   SizedBox(height: 8.0),
                   // Row: Call Icon and Text
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Call Icon (Asset Image)
-                      Image.asset(
-                        'assets/images/phonecall.png',
-                        width: 24.0,
-                        height: 24.0,
-                      ),
-                      SizedBox(width: 8.0),
-                      // Text: 01757769498
-                      Text(
-                        '01757769498',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                    ],
+                  Text(
+                    '01757769498',
+                    style: TextStyle(fontSize: 16.0),
                   ),
-                  SizedBox(height: 16.0),
+                  // Call Icon (Asset Image)
+                  Image.asset(
+                    'assets/images/phonecall.png',
+                    width: 30.0,
+                    height: 30.0,
+                  ),
+                  SizedBox(height: 20.0),
                   // Row: Fb asset image and Text
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -303,7 +295,6 @@ class _SupportPage extends State<SupportPage>{
                       ),
                     ],
                   ),
-                  SizedBox(height: 16.0),
                   // Button: Send Message
                   GestureDetector(
                     onTap: () {
@@ -315,18 +306,17 @@ class _SupportPage extends State<SupportPage>{
                         Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 20),
                           child: Container(
-                            height: 45,
+                            height: 40,
                             width: 250,
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
                                 colors: [
-                                  Colors.deepPurpleAccent.withOpacity(0.9),
-                                  Colors.blue.shade900.withOpacity(0.5)
+                                  Color(0xFF002349), Color(0xFF0223A8),
                                 ],
                               ),
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(6),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.5),
@@ -339,7 +329,7 @@ class _SupportPage extends State<SupportPage>{
                             ),
                             child: const Center(
                               child: Text(
-                                'Filter',
+                                'SEND MESSAGE',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
@@ -370,7 +360,7 @@ class _SupportPage extends State<SupportPage>{
                       ),
                     ],
                   ),
-                  SizedBox(height: 16.0),
+                  // SizedBox(height: 16.0),
 
                   // Button: Send Message
                   GestureDetector(
@@ -383,18 +373,17 @@ class _SupportPage extends State<SupportPage>{
                         Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 20),
                           child: Container(
-                            height: 45,
+                            height: 40,
                             width: 250,
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
                                 colors: [
-                                  Colors.deepPurpleAccent.withOpacity(0.9),
-                                  Colors.blue.shade900.withOpacity(0.5)
+                                  Color(0xFF002349), Color(0xFF0223A8),
                                 ],
                               ),
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(6),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.5),
@@ -407,7 +396,7 @@ class _SupportPage extends State<SupportPage>{
                             ),
                             child: const Center(
                               child: Text(
-                                'Filter',
+                                'SEND MESSAGE',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
