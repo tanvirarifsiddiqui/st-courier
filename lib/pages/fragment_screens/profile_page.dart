@@ -287,9 +287,11 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Text(
-                                ': Level-2, 25/2 Lake Circus Rd, Dhaka 1205',
-                                style: TextStyle(fontSize: 14.0),
+                              Flexible(
+                                child: Text(
+                                  ': Level-2, 25/2 Lake Circus Rd, Dhaka 1205',
+                                  style: TextStyle(fontSize: 14.0),
+                                ),
                               ),
                             ],
                           ),

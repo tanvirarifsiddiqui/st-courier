@@ -13,6 +13,7 @@ import 'package:st_courier/pages/fragment_screens/pending_pickup_page.dart';
 import 'package:st_courier/pages/fragment_screens/profile_page.dart';
 import 'package:st_courier/pages/fragment_screens/return_complete_page.dart';
 import 'package:st_courier/pages/fragment_screens/return_parcel_page.dart';
+import 'package:st_courier/pages/fragment_screens/total_paid_amount_page.dart';
 import 'package:st_courier/pages/parcel_list.dart';
 import 'package:st_courier/pages/payment_list.dart';
 import 'package:st_courier/pages/payment_request_list.dart';
@@ -466,12 +467,12 @@ class _HomePage extends State<HomePage> {
                 onTap: (){
                   Get.to(()=>const ReturnCompleteScreen());
                 },
-                child: _cardModel('Return Complete', "41","assets/images/returncomplete.png",cardWidth)),
+                child: _cardModel('Return Complete', "11","assets/images/returncomplete.png",cardWidth)),
             // const SizedBox(width: 16,),
 
             GestureDetector(
                 onTap: (){
-                  Get.to(()=>ParcelListPage());
+                  // Get.to(()=>ParcelListPage());
                 },
                 child: _cardModel( 'Payment in Progress', "0","assets/images/pendingamout.png",cardWidth)),
             // const SizedBox(width: 12,),
@@ -486,14 +487,14 @@ class _HomePage extends State<HomePage> {
           children: [
             GestureDetector(
                 onTap: (){
-                  Get.to(()=>ParcelListPage());
+                  // Get.to(()=>ParcelListPage());
                 },
                 child: _cardModel( 'Total Collect Amount', "31,551","assets/images/totalcollectamount.png",cardWidth2)),
 
             // const SizedBox(width: 16,),
             GestureDetector(
                 onTap: (){
-                  Get.to(()=>ParcelListPage());
+                  Get.to(()=>const TotalPaymentScreen());
                 },
                 child: _cardModel( 'Total Paid Amount', "20,532","assets/images/cashondelivery.png",cardWidth2)),
             // const SizedBox(width: 12,),

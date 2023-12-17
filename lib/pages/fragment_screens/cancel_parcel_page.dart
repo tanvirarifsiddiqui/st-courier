@@ -55,7 +55,7 @@ class CanceledParcelScreen extends StatelessWidget {
                                   children: [
                                     Row(
                                       children: [
-                                        const Icon(Icons.code,
+                                        const Icon(Icons.receipt,
                                             color: Color(0xFF8B69FF)),
                                         const SizedBox(width: 10.0),
                                         Text(
@@ -131,7 +131,7 @@ class CanceledParcelScreen extends StatelessWidget {
                                       const Icon(Icons.house,
                                           color: Color(0xFF8B69FF)),
                                       const SizedBox(width: 10.0),
-                                      Text(parcel.address)
+                                      Flexible(child: Text(parcel.address))
                                     ],
                                   ),
                                 ),
@@ -139,17 +139,17 @@ class CanceledParcelScreen extends StatelessWidget {
                                 buildCardRow("Total Charge:",
                                     "${parcel.charge}", Icons.attach_money),
                                 buildCardRow("Total Collection Amount:",
-                                    "${parcel.amount}", Icons.money),
+                                    "${parcel.amount}", Icons.calculate),
                                 const Row(
                                   children: [
                                     Icon(Icons.assignment, color: Color(0xFF8B69FF)),
                                     SizedBox(width: 10.0),
-                                    Text("Parcel Brief:",style: TextStyle(fontWeight: FontWeight.bold,),),
+                                    Text("Parcel Brief:",),
                                   ],
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(parcel.brief,),
+                                  child: Flexible(child: Text(parcel.brief,)),
                                 ),
 
                                 // Container at the bottom with dynamic design

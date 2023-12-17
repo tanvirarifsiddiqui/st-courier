@@ -101,7 +101,7 @@ class ParcelDetailScreen extends StatelessWidget {
                       ),
                        Padding(
                          padding: const EdgeInsets.all(8.0),
-                         child: Text(_currentParcel.deliveryAddress),
+                         child: Flexible(child: Text(_currentParcel.deliveryAddress)),
                        )
                     ],
                   ),
