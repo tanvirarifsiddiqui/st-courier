@@ -6,8 +6,13 @@ import 'package:get/get.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
 import 'package:st_courier/pages/fragment_screens/cancel_parcel_page.dart';
+import 'package:st_courier/pages/fragment_screens/delivery_complete_page.dart';
+import 'package:st_courier/pages/fragment_screens/payment_complete_page.dart';
+import 'package:st_courier/pages/fragment_screens/pending_delivery_page.dart';
 import 'package:st_courier/pages/fragment_screens/pending_pickup_page.dart';
 import 'package:st_courier/pages/fragment_screens/profile_page.dart';
+import 'package:st_courier/pages/fragment_screens/return_complete_page.dart';
+import 'package:st_courier/pages/fragment_screens/return_parcel_page.dart';
 import 'package:st_courier/pages/parcel_list.dart';
 import 'package:st_courier/pages/payment_list.dart';
 import 'package:st_courier/pages/payment_request_list.dart';
@@ -421,21 +426,21 @@ class _HomePage extends State<HomePage> {
           children: [
             GestureDetector(
                 onTap: (){
-                  Get.to(()=>ParcelListPage());
+                  Get.to(()=>const PendingDeliveryScreen());
                 },
                 child: _cardModel( 'Pending Delivery', "558","assets/images/waitingpickup1.png",cardWidth)),
             // const SizedBox(width: 16,),
 
             GestureDetector(
                 onTap: (){
-                  Get.to(()=>ParcelListPage());
+                  Get.to(()=>const DeliveryCompleteScreen());
                 },
                 child: _cardModel( 'Delivery Complete', "41","assets/images/deliverycomplete.png",cardWidth)),
             // const SizedBox(width: 16,),
 
             GestureDetector(
                 onTap: (){
-                  Get.to(()=>ParcelListPage());
+                  Get.to(()=>PaymentCompleteScreen());
                 },
                 child: _cardModel( 'Payment Complete', "21","assets/images/paymentcomplete.png",cardWidth)),
             // const SizedBox(width: 12,),
@@ -452,14 +457,14 @@ class _HomePage extends State<HomePage> {
           children: [
             GestureDetector(
                 onTap: (){
-                  Get.to(()=>ParcelListPage());
+                  Get.to(()=>const ReturnParcelScreen());
                 },
                 child: _cardModel('Return Parcel', "10","assets/images/returnparcel.png",cardWidth)),
             // const SizedBox(width: 16,),
 
             GestureDetector(
                 onTap: (){
-                  Get.to(()=>ParcelListPage());
+                  Get.to(()=>const ReturnCompleteScreen());
                 },
                 child: _cardModel('Return Complete', "41","assets/images/returncomplete.png",cardWidth)),
             // const SizedBox(width: 16,),

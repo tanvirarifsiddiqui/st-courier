@@ -710,7 +710,7 @@ class _ParcelListPage extends State<ParcelListPage> {
     // Add other cases for different statuses with their respective gradients
       default:
         return LinearGradient(
-          colors: [Colors.grey, Color(0xFF0A0A0A)],
+          colors: [Colors.grey, Color(0xE80A0A0A)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );

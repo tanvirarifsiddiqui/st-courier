@@ -7,18 +7,18 @@ import '../../Models/card_row_model.dart';
 import '../../Models/parcel_list_model.dart';
 import '../../objects/parcel_objects.dart';
 
-class CanceledParcelScreen extends StatelessWidget {
-  const CanceledParcelScreen({super.key});
+class ReturnParcelScreen extends StatelessWidget {
+  const ReturnParcelScreen({super.key});
 
 
   @override
   Widget build(BuildContext context) {
     List<Parcel> _canceledParcels = parcels
-        .where((parcel) => parcel.status == "Delivery Cancelled")
+        .where((parcel) => parcel.status == "Delivery with Exchange")
         .toList();
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Cancel Parcel'),
+          title: const Text('Return Parcel'),
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -158,14 +158,14 @@ class CanceledParcelScreen extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
                                     gradient: const LinearGradient(
-                                      colors: [Color(0xff6e44a8), Color(0xffa60b2f),Color(0xffd70032),],
+                                      colors: [Colors.grey, Color(0xE80A0A0A)],
                                       begin: Alignment.bottomLeft,
                                       end: Alignment.topRight,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.redAccent.shade400.withOpacity(0.8),
+                                        color: Colors.grey.shade400.withOpacity(0.8),
                                         blurRadius: 5.0,
                                         spreadRadius: 2.0,
                                       ),
