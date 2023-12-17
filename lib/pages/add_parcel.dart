@@ -14,6 +14,8 @@ import 'package:st_courier/pages/pick_up_parcel_list.dart';
 import 'package:st_courier/pages/return_parcel_list.dart';
 import 'package:st_courier/pages/support.dart';
 
+import '../Models/form_model.dart';
+
 class AddParcelPage extends StatefulWidget {
   const AddParcelPage({Key? key}) : super(key: key);
 
@@ -570,30 +572,3 @@ class _AddParcelPage extends State<AddParcelPage> {
 
 }
 
-class MyTextField extends StatelessWidget {
-  MyTextField({
-    Key? key,
-    required this.fieldName,
-    required this.myController,
-    this.myIcon = Icons.verified_user_outlined,
-    this.prefixIconColor = Colors.blueAccent,
-  });
-
-  final TextEditingController myController;
-  String fieldName;
-  final IconData myIcon;
-  Color prefixIconColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: myController,
-      decoration: InputDecoration(
-        labelText: fieldName,
-        prefixIcon: Icon(myIcon, color: prefixIconColor),
-        border: const OutlineInputBorder(),
-        labelStyle: const TextStyle(color: Colors.deepPurple),
-      ),
-    );
-  }
-}

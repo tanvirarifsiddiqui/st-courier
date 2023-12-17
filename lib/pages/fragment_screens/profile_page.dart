@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:st_courier/pages/fragment_screens/update_password_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -565,7 +567,7 @@ class ProfilePage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  // Get.to(()=> AddParcellPage());
+                  Get.to(()=> const UpdatePasswordPage());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

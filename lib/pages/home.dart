@@ -215,11 +215,10 @@ class _HomePage extends State<HomePage> {
                 ),
               ),
             ),
-            body: ListView(padding: const EdgeInsets.all(10), children: [
-              //profile image
-              Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
-                child: Container(
+            body: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: ListView(padding: const EdgeInsets.all(10), children: [
+                Container(
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
@@ -306,66 +305,66 @@ class _HomePage extends State<HomePage> {
                     ],
                   ),
                 ),
-              ),
-              const Divider(thickness: 1),
-              const SizedBox(height: 15,),
-              const Center(child: Text(
-                'Welcome To ST Courier',
-                style: TextStyle(
-                  shadows: [
-                    Shadow(
-                      color: Colors.grey, // Shadow color and opacity
-                      offset: Offset(0, 1), // Shadow position (horizontal, vertical)
-                      blurRadius: 5, // Shadow blur radius
-                    ),
-                  ],
-                  fontSize: 26,
-                  color: Colors.black,
-                ),
-              )),
-              const SizedBox(height: 15,),
-              GestureDetector(
-                onTap: () {
-                  Get.to(()=> AddParcelPage());
-                },
-                //Button
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 45,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
+                const Divider(thickness: 1),
+                const SizedBox(height: 15,),
+                const Center(child: Text(
+                  'Welcome To ST Courier',
+                  style: TextStyle(
+                    shadows: [
+                      Shadow(
+                        color: Colors.grey, // Shadow color and opacity
+                        offset: Offset(0, 1), // Shadow position (horizontal, vertical)
+                        blurRadius: 5, // Shadow blur radius
                       ),
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(0, 3), // changes the position of shadow
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Add Parcel',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
+                    ],
+                    fontSize: 26,
+                    color: Colors.black,
+                  ),
+                )),
+                const SizedBox(height: 15,),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(()=> AddParcelPage());
+                  },
+                  //Button
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
+                        ),
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3), // changes the position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Add Parcel',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+                _buildDashboardWidgets(),
+              ]
               ),
-              _buildDashboardWidgets(),
-            ]
             )
         )
     );
