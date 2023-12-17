@@ -241,6 +241,9 @@ class _OrderTrackingPage extends State<OrderTrackingPage>{
                             height: 45,
                             width: 250,
                             decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.purple.shade900
+                              ),
                               gradient: LinearGradient(
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
@@ -249,7 +252,7 @@ class _OrderTrackingPage extends State<OrderTrackingPage>{
                                   Colors.blue.shade900.withOpacity(0.5)
                                 ],
                               ),
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(8),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.5),
@@ -264,7 +267,7 @@ class _OrderTrackingPage extends State<OrderTrackingPage>{
                               child: Text(
                                 'Filter',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 20,
                                   color: Colors.white,
                                 ),
                               ),

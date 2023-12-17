@@ -89,7 +89,7 @@ class _HomePage extends State<HomePage> {
                       Get.off(() => const AddParcelPage());
                     },
                     leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
-                    title: const Text('Add Parcel'),
+                    title: const Text('Add Parcel',),
                   ),
                   ListTile(
                     onTap: () {
@@ -268,12 +268,15 @@ class _HomePage extends State<HomePage> {
                             height: 40,
                             width: 120,
                             decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.purple.shade700
+                              ),
                               gradient: LinearGradient(
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                                 colors: [Colors.blue.withOpacity(0.4),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.4)],
                               ),
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(6),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.5),
@@ -320,6 +323,7 @@ class _HomePage extends State<HomePage> {
                 onTap: () {
                   Get.to(()=> AddParcelPage());
                 },
+                //Button
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -327,12 +331,15 @@ class _HomePage extends State<HomePage> {
                       height: 45,
                       width: 200,
                       decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.deepPurple.shade900
+                        ),
                         gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                         colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
                       ),
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(8),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -346,7 +353,7 @@ class _HomePage extends State<HomePage> {
                         child: Text(
                           'Add Parcel',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 20,
                             color: Colors.white,
                           ),
                         ),
@@ -370,7 +377,7 @@ class _HomePage extends State<HomePage> {
     return Column(
       children: [
         const SizedBox(
-          height: 30,
+          height: 25,
         ),
         //1st Tow Segments
         Row(
@@ -403,7 +410,7 @@ class _HomePage extends State<HomePage> {
         ),
 
         const SizedBox(
-          height: 24,
+          height: 20,
         ),
 
         //2nd Tow Segments
@@ -435,7 +442,7 @@ class _HomePage extends State<HomePage> {
         ),
 
         const SizedBox(
-          height: 24,
+          height: 20,
         ),
 //3ed Tow Segments
         Row(
@@ -465,7 +472,7 @@ class _HomePage extends State<HomePage> {
           ],
         ),
 
-        const SizedBox(height: 24,),
+        const SizedBox(height: 20,),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -494,57 +501,59 @@ class _HomePage extends State<HomePage> {
 
   Widget _cardModel(String operation, String number,String iconPath, double width){
     return Flexible(
-        child: Container(
-          height: 150,
-          width: width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: const Offset(0, 3), // changes the position of shadow
-              ),
-            ],
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Colors.blue.withOpacity(0.4),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.4)],
-                ),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8,
-            vertical: 8,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 40, // Fixed height for the image
-                width: 40, // Fixed width for the image
-                child: Image.asset(iconPath),
+          elevation: 10,
+          child: Container(
+            height: 150,
+            width: width,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Color(0xFF4F6270)
               ),
-              Text(
-                operation,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(height: 3),
-              Text(
-                number,
-                style: const TextStyle(
-                  fontSize: 22,
-                  // fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
+              borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [Colors.blue.withOpacity(0.4),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.4)],
+                  ),
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 8,
+            ),
 
-            ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 40, // Fixed height for the image
+                  width: 40, // Fixed width for the image
+                  child: Image.asset(iconPath),
+                ),
+                Text(
+                  operation,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 3),
+                Text(
+                  number,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    // fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+
+              ],
+            ),
           ),
         ));
   }
