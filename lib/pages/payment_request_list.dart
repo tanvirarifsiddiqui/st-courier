@@ -242,7 +242,7 @@ class _PaymentRequestListPage extends State<PaymentRequestListPage>{
                         Table(
                           columnWidths: {
                             0: FlexColumnWidth(1), // Adjust column width as needed
-                            1: FlexColumnWidth(4), // Adjust column width as needed
+                            1: FlexColumnWidth(3), // Adjust column width as needed
                           },
                           children: [
                             TableRow(

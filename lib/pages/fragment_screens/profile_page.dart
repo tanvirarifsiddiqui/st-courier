@@ -123,10 +123,6 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: 10.0),
                       // Use Table widget to create an invisible table
                       Table(
-                        // Remove the border from the table
-                        border: TableBorder.all(
-                          color: Colors.transparent,
-                        ),
                         children: [
                           // The first row of the table
                           TableRow(
@@ -227,13 +223,13 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                   SizedBox(width: 10.0),
                                   Text(
-                                    'Website/FB',
+                                    'Website/FB:',
                                     style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Text(
-                                ': sites.google.com/diu.edu.bd/tanvir3687',
+                                'sites.google.com/diu.edu.bd/tanvir3687',
                                 style: TextStyle(fontSize: 14.0),
                               ),
                             ],
@@ -266,10 +262,10 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: 10.0),
                       // Use Table widget to create an invisible table
                       Table(
-                        // Remove the border from the table
-                        border: TableBorder.all(
-                          color: Colors.transparent,
-                        ),
+                        columnWidths: {
+                          0: FlexColumnWidth(1), // Adjust column width as needed
+                          1: FlexColumnWidth(2), // Adjust column width as needed
+                        },
                         children: [
                           // The first row of the table
                           TableRow(
@@ -282,14 +278,14 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                   SizedBox(width: 10.0),
                                   Text(
-                                    'Address',
+                                    'Address:',
                                     style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
                               Flexible(
                                 child: Text(
-                                  ': Level-2, 25/2 Lake Circus Rd, Dhaka 1205',
+                                  'Level-2, 25/2 Lake Circus Rd, Dhaka 1205',
                                   style: TextStyle(fontSize: 14.0),
                                 ),
                               ),
@@ -316,17 +312,17 @@ class ProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Payment Information',
+                        'Payment Information:',
                         style: TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 10.0),
                       // Use Table widget to create an invisible table
                       Table(
-                        // Remove the border from the table
-                        border: TableBorder.all(
-                          color: Colors.transparent,
-                        ),
+                        columnWidths: {
+                          0: FlexColumnWidth(3), // Adjust column width as needed
+                          1: FlexColumnWidth(2), // Adjust column width as needed
+                        },
                         children: [
                           // The first row of the table
                           TableRow(
@@ -345,7 +341,7 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                ':  캐럴이 와요.',
+                                ': 캐럴이 와요.',
                                 style: TextStyle(fontSize: 14.0),
                               ),
                             ],
@@ -494,10 +490,6 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: 10.0),
                       // Use Table widget to create an invisible table
                       Table(
-                        // Remove the border from the table
-                        border: TableBorder.all(
-                          color: Colors.transparent,
-                        ),
                         children: [
                           // The first row of the table
                           TableRow(

@@ -241,9 +241,6 @@ class _OrderTrackingPage extends State<OrderTrackingPage>{
                             height: 45,
                             width: 250,
                             decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.purple.shade900
-                              ),
                               gradient: LinearGradient(
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,

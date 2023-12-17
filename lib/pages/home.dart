@@ -263,7 +263,7 @@ class _HomePage extends State<HomePage> {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                Text("01852148425",
+                                Text("01794338046",
                                     softWrap: true,),
                               ]),
                         ),
@@ -276,9 +276,6 @@ class _HomePage extends State<HomePage> {
                             height: 40,
                             width: 120,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.purple.shade700
-                              ),
                               gradient: LinearGradient(
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
@@ -339,12 +336,9 @@ class _HomePage extends State<HomePage> {
                       height: 45,
                       width: 200,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.deepPurple.shade900
-                        ),
                         gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                         colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
                       ),
                         borderRadius: BorderRadius.circular(8),
@@ -513,19 +507,16 @@ class _HomePage extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          elevation: 10,
+          elevation: 6,
           child: Container(
             height: 150,
             width: width,
             decoration: BoxDecoration(
-              border: Border.all(
-                color: Color(0xFF4F6270)
-              ),
               borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.blue.withOpacity(0.4),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.4)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.blue.withOpacity(0.3),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.2)],
                   ),
             ),
             padding: const EdgeInsets.symmetric(

@@ -313,7 +313,7 @@ class _SupportPage extends State<SupportPage>{
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                                 colors: [
-                                  Color(0xFF002349), Color(0xFF0223A8),
+                                  Color(0xFF003277), Color(0xFF002AE8),
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(6),
@@ -380,7 +380,7 @@ class _SupportPage extends State<SupportPage>{
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                                 colors: [
-                                  Color(0xFF002349), Color(0xFF0223A8),
+                                  Color(0xFF00492F), Color(0xFF00A667),
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(6),
