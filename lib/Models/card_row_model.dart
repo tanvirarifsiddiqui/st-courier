@@ -12,7 +12,7 @@ Widget buildCardRow(String label, String amount, IconData icon) {
           children: [
             Icon(icon, color: const Color(0xFF8B69FF)),
             const SizedBox(width: 10.0),
-            Text(label),
+            Text(label,style: const TextStyle(fontWeight: FontWeight.bold),),
           ],
         ),
         Text(amount, textAlign: TextAlign.right),

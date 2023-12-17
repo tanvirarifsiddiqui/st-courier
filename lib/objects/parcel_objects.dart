@@ -6,7 +6,7 @@ final List<Parcel> parcels = [
     invoiceId: '23120901Z00H22',
     name: 'Rony Ahmed',
     phone: '0121098765',
-    address: '90/12 Main Road',
+    address: 'House-15, Road-29, Sector-7 Uttara, Dhaka.',
     charge: 140.0,
     amount: 280.0,
     brief: 'A guitar from a music store',

@@ -5,6 +5,7 @@ import 'package:st_courier/Models/card_row_model.dart';
 import 'package:st_courier/pages/add_parcel.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
+import 'package:st_courier/pages/fragment_screens/parcel_details_page.dart';
 import 'package:st_courier/pages/home.dart';
 import 'package:st_courier/pages/payment_list.dart';
 import 'package:st_courier/pages/payment_request_list.dart';
@@ -509,7 +510,7 @@ class _ParcelListPage extends State<ParcelListPage> {
                       final parcel = _applyFilters()[index];
                       return GestureDetector(
                         onTap: () {
-                          // Do something when the card is tapped
+                          Get.to(()=>ParcelDetailScreen(index: index));
                         },
                         child: Card(
                           color: Colors.purple[50],
@@ -607,9 +608,19 @@ class _ParcelListPage extends State<ParcelListPage> {
                                   buildCardRow("Total Charge:",
                                       "${parcel.charge}", Icons.attach_money),
                                   buildCardRow("Total Collection Amount:",
-                                      "${parcel.amount}", Icons.money),
-                                  buildCardRow("Parcel Brief:", "${parcel.brief}",
-                                      Icons.description),
+                                      "${parcel.amount}", Icons.calculate),
+
+                                    const Row(
+                                      children: [
+                                        Icon(Icons.assignment, color: Color(0xFF8B69FF)),
+                                        SizedBox(width: 10.0),
+                                        Text("Parcel Brief:",style: TextStyle(fontWeight: FontWeight.bold,),),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(parcel.brief,),
+                                    ),
 
                                 // Container at the bottom with dynamic design
                                 Container(
@@ -709,22 +720,22 @@ class _ParcelListPage extends State<ParcelListPage> {
   Color _getShadowColorForStatus(String status) {
     switch (status) {
       case 'Delivery Completed':
-        return Colors.greenAccent.shade400;
+        return Colors.greenAccent.shade400.withOpacity(0.8);
       case 'Delivery Pending':
-        return Colors.amber.shade700;
+        return Colors.amber.shade700.withOpacity(0.8);
       case 'Delivery Cancelled':
-        return Colors.redAccent.shade400;
+        return Colors.redAccent.shade400.withOpacity(0.8);
       case 'Payment Done':
-        return Colors.lightGreenAccent.shade400;
+        return Colors.lightGreenAccent.shade400.withOpacity(0.8);
       case 'Payment Pending':
-        return Colors.yellowAccent.shade400;
+        return Colors.yellowAccent.shade400.withOpacity(0.8);
       case 'Return Completed':
-        return Colors.cyanAccent;
+        return Colors.cyanAccent.withOpacity(0.8);
       case 'Pickup Request':
-        return Colors.blueAccent.shade400;
+        return Colors.blueAccent.shade400.withOpacity(0.8);
 
       default:
-        return Colors.grey.shade400;
+        return Colors.grey.shade400.withOpacity(0.8);
     }
   }
 
