@@ -3,6 +3,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
+import 'package:st_courier/pages/fragment_screens/parcel_details_page.dart';
 import 'package:st_courier/pages/home.dart';
 import 'package:st_courier/pages/order_tracking.dart';
 import 'package:st_courier/pages/parcel_list.dart';
@@ -304,7 +305,7 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                         final parcel = _applyFilters()[index];
                         return GestureDetector(
                             onTap: () {
-                              // Do something when the card is tapped
+                              Get.to(()=>ParcelDetailScreen(index: index));
                             },
                             child: Card(
                               color: Colors.purple[50],
@@ -403,8 +404,17 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                                         "${parcel.charge}", Icons.attach_money),
                                     buildCardRow("Total Collection Amount:",
                                         "${parcel.amount}", Icons.money),
-                                    buildCardRow("Parcel Brief:", "${parcel.brief}",
-                                        Icons.description),
+                                    const Row(
+                                      children: [
+                                        Icon(Icons.assignment, color: Color(0xFF8B69FF)),
+                                        SizedBox(width: 10.0),
+                                        Text("Parcel Brief:",style: TextStyle(fontWeight: FontWeight.bold,),),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(parcel.brief,),
+                                    ),
 
                                     // Container at the bottom with dynamic design
                                     Container(
@@ -419,7 +429,7 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                                         borderRadius: BorderRadius.circular(8.0),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.cyanAccent,
+                                            color: Colors.cyanAccent.withOpacity(0.8),
                                             blurRadius: 5.0,
                                             spreadRadius: 2.0,
                                           ),

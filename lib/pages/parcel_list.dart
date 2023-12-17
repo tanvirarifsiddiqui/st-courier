@@ -34,7 +34,7 @@ class _ParcelListPage extends State<ParcelListPage> {
   final List<String> statuses = [
     'All',
     'Delivery Completed',
-    'Delivery Pending',
+    'Delivery Processing',
     'Delivery Cancelled',
     'Payment Done',
     'Payment Pending',
@@ -671,7 +671,7 @@ class _ParcelListPage extends State<ParcelListPage> {
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
-      case 'Delivery Pending':
+      case 'Delivery Processing':
         return LinearGradient(
           colors: [Color(0xff6e44a8), Color(0xffce5300), Color(0xffd28800)],
           begin: Alignment.bottomLeft,
@@ -710,7 +710,7 @@ class _ParcelListPage extends State<ParcelListPage> {
     // Add other cases for different statuses with their respective gradients
       default:
         return LinearGradient(
-          colors: [Colors.grey, Colors.grey[200]!],
+          colors: [Colors.grey, Color(0xFF0A0A0A)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         );
@@ -721,7 +721,7 @@ class _ParcelListPage extends State<ParcelListPage> {
     switch (status) {
       case 'Delivery Completed':
         return Colors.greenAccent.shade400.withOpacity(0.8);
-      case 'Delivery Pending':
+      case 'Delivery Processing':
         return Colors.amber.shade700.withOpacity(0.8);
       case 'Delivery Cancelled':
         return Colors.redAccent.shade400.withOpacity(0.8);

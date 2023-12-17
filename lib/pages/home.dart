@@ -5,6 +5,8 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:st_courier/pages/covarage_area.dart';
 import 'package:st_courier/pages/delivery_list.dart';
+import 'package:st_courier/pages/fragment_screens/cancel_parcel_page.dart';
+import 'package:st_courier/pages/fragment_screens/pending_pickup_page.dart';
 import 'package:st_courier/pages/fragment_screens/profile_page.dart';
 import 'package:st_courier/pages/parcel_list.dart';
 import 'package:st_courier/pages/payment_list.dart';
@@ -393,7 +395,7 @@ class _HomePage extends State<HomePage> {
 
             GestureDetector(
                 onTap: (){
-                  Get.to(ParcelListPage());
+                  Get.to(()=>const CanceledParcelScreen());
                 },
                 child: _cardModel('Cancel Parcel', "4","assets/images/cancelled.png",cardWidth)
             ),
@@ -401,7 +403,7 @@ class _HomePage extends State<HomePage> {
 
             GestureDetector(
                 onTap: (){
-                  Get.to(ParcelListPage());
+                  Get.to(()=> PendingPickupScreen());
                 },
                 child: _cardModel('Pending Pickup', "5","assets/images/waitingpickup.png",cardWidth)),
             // const SizedBox(width: 12,),
