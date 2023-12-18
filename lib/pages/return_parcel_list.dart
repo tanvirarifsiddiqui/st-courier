@@ -27,9 +27,6 @@ class ReturnParcelListPage extends StatefulWidget {
 class _ReturnParcelListPage extends State<ReturnParcelListPage>{
   final _advancedDrawerController = AdvancedDrawerController();
 
-  // A variable to store the selected parcel status
-  String selectedStatus = 'All';
-
   // A variable to store the from date filter
   DateTime? fromDate;
 
@@ -483,11 +480,15 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                                       margin: const EdgeInsets.only(top: 16.0),
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        gradient: _getGradientForStatus(parcel.status),
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xff6e44a8), Color(0xff006280), Color(0xff167091)],
+                                          begin: Alignment.bottomLeft,
+                                          end: Alignment.topRight,
+                                        ),
                                         borderRadius: BorderRadius.circular(8.0),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: _getShadowColorForStatus(parcel.status),
+                                            color: Colors.cyanAccent.withOpacity(0.8),
                                             blurRadius: 5.0,
                                             spreadRadius: 2.0,
                                           ),
