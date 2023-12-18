@@ -14,7 +14,7 @@ class ParcelDetailScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Coverage Area'),
+          title: const Text('Parcel Details'),
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -101,7 +101,7 @@ class ParcelDetailScreen extends StatelessWidget {
                       ),
                        Padding(
                          padding: const EdgeInsets.all(8.0),
-                         child: Flexible(child: Text(_currentParcel.deliveryAddress)),
+                         child: Text(_currentParcel.deliveryAddress),
                        )
                     ],
                   ),

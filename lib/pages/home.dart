@@ -215,156 +215,153 @@ class _HomePage extends State<HomePage> {
                 ),
               ),
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: ListView(padding: const EdgeInsets.all(10), children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(children: [
-                        ClipOval(
-                            child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color:
-                                    Colors.white60, // Adjust the border color
-                                width: 2.5, // Adjust the border width
-                              ),
-                              image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage("assets/images/user.png"),
-                              )),
-                        )),
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width *
-                              0.34, //solved by media query
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text("Md. Tanvir",
-                                    softWrap: true,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500)),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text("Balance 175",
-                                    softWrap: true,
-                                    style: TextStyle(fontStyle: FontStyle.italic )),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text("01794338046",
-                                    softWrap: true,),
-                              ]),
-                        ),
-                        // const SizedBox(width: 10), // Add space between address and connection text
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(()=>ProfilePage());
-                          },
+            body: ListView(padding: const EdgeInsets.all(10), children: [
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(children: [
+                      ClipOval(
                           child: Container(
-                            height: 40,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [Colors.blue.withOpacity(0.4),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.4)],
-                              ),
-                              borderRadius: BorderRadius.circular(6),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 2), // changes the position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Center(
-                              child: Text(
-                                'View Profile',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ]),
-                    ],
-                  ),
-                ),
-                const Divider(thickness: 1),
-                const SizedBox(height: 15,),
-                const Center(child: Text(
-                  'Welcome To ST Courier',
-                  style: TextStyle(
-                    shadows: [
-                      Shadow(
-                        color: Colors.grey, // Shadow color and opacity
-                        offset: Offset(0, 1), // Shadow position (horizontal, vertical)
-                        blurRadius: 5, // Shadow blur radius
-                      ),
-                    ],
-                    fontSize: 26,
-                    color: Colors.black,
-                  ),
-                )),
-                const SizedBox(height: 15,),
-                GestureDetector(
-                  onTap: () {
-                    Get.to(()=> AddParcelPage());
-                  },
-                  //Button
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 45,
-                        width: 200,
+                        width: 60,
+                        height: 60,
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
-                        ),
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3), // changes the position of shadow
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color:
+                                  Colors.white60, // Adjust the border color
+                              width: 2.5, // Adjust the border width
                             ),
-                          ],
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Add Parcel',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
+                            image: const DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("assets/images/user.png"),
+                            )),
+                      )),
+                      const SizedBox(width: 10),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width *
+                            0.34, //solved by media query
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Md. Tanvir",
+                                  softWrap: true,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500)),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text("Balance 175",
+                                  softWrap: true,
+                                  style: TextStyle(fontStyle: FontStyle.italic )),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text("01794338046",
+                                  softWrap: true,),
+                            ]),
+                      ),
+                      // const SizedBox(width: 10), // Add space between address and connection text
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(()=>ProfilePage());
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Colors.blue.withOpacity(0.4),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.4)],
+                            ),
+                            borderRadius: BorderRadius.circular(6),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 2), // changes the position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              'View Profile',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ]),
+                  ],
                 ),
-                _buildDashboardWidgets(),
-              ]
               ),
+              const Divider(thickness: 1),
+              const SizedBox(height: 15,),
+              const Center(child: Text(
+                'Welcome To ST Courier',
+                style: TextStyle(
+                  shadows: [
+                    Shadow(
+                      color: Colors.grey, // Shadow color and opacity
+                      offset: Offset(0, 1), // Shadow position (horizontal, vertical)
+                      blurRadius: 5, // Shadow blur radius
+                    ),
+                  ],
+                  fontSize: 26,
+                  color: Colors.black,
+                ),
+              )),
+              const SizedBox(height: 15,),
+              GestureDetector(
+                onTap: () {
+                  Get.to(()=> AddParcelPage());
+                },
+                //Button
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 45,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.deepPurpleAccent.withOpacity(0.9), Colors.blue.shade900.withOpacity(0.5)],
+                      ),
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3), // changes the position of shadow
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Add Parcel',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              _buildDashboardWidgets(),
+            ]
             )
         )
     );
