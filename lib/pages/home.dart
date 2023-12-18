@@ -74,8 +74,8 @@ class _HomePage extends State<HomePage> {
                 // physics: AlwaysScrollableScrollPhysics(),
                 children: [
                   Container(
-                    width: 120.0,
-                    height: 120.0,
+                    width: 100.0,
+                    height: 100.0,
                     margin: const EdgeInsets.only(
                       top: 18.0,
                       bottom: 18.0,
@@ -375,185 +375,186 @@ class _HomePage extends State<HomePage> {
   Widget _buildDashboardWidgets() {
     double cardWidth = MediaQuery.of(context).size.width * 0.28;
     double cardWidth2 = MediaQuery.of(context).size.width * 0.38;
-    return Column(
-      children: [
-        const SizedBox(
-          height: 25,
-        ),
-        //1st Tow Segments
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            GestureDetector(
-              onTap: (){
-                Get.to(ParcelListPage());
-              },
-                child: _cardModel('Total Parcel', "608","assets/images/totalpearcel.png",cardWidth)
-            ),
-            // const SizedBox(width: 16,),
-
-            GestureDetector(
+    return SizedBox(
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 25,
+          ),
+          //1st Tow Segments
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
                 onTap: (){
-                  Get.to(()=>const CanceledParcelScreen());
+                  Get.to(ParcelListPage());
                 },
-                child: _cardModel('Cancel Parcel', "4","assets/images/cancelled.png",cardWidth)
-            ),
-            // const SizedBox(width: 16,),
-
-            GestureDetector(
-                onTap: (){
-                  Get.to(()=> PendingPickupScreen());
-                },
-                child: _cardModel('Pending Pickup', "5","assets/images/waitingpickup.png",cardWidth)),
-            // const SizedBox(width: 12,),
-
-          ],
-        ),
-
-        const SizedBox(
-          height: 20,
-        ),
-
-        //2nd Tow Segments
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            GestureDetector(
-                onTap: (){
-                  Get.to(()=>const PendingDeliveryScreen());
-                },
-                child: _cardModel( 'Pending Delivery', "558","assets/images/waitingpickup1.png",cardWidth)),
-            // const SizedBox(width: 16,),
-
-            GestureDetector(
-                onTap: (){
-                  Get.to(()=>const DeliveryCompleteScreen());
-                },
-                child: _cardModel( 'Delivery Complete', "41","assets/images/deliverycomplete.png",cardWidth)),
-            // const SizedBox(width: 16,),
-
-            GestureDetector(
-                onTap: (){
-                  Get.to(()=>PaymentCompleteScreen());
-                },
-                child: _cardModel( 'Payment Complete', "21","assets/images/paymentcomplete.png",cardWidth)),
-            // const SizedBox(width: 12,),
-
-          ],
-        ),
-
-        const SizedBox(
-          height: 20,
-        ),
-//3ed Tow Segments
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            GestureDetector(
-                onTap: (){
-                  Get.to(()=>const ReturnParcelScreen());
-                },
-                child: _cardModel('Return Parcel', "10","assets/images/returnparcel.png",cardWidth)),
-            // const SizedBox(width: 16,),
-
-            GestureDetector(
-                onTap: (){
-                  Get.to(()=>const ReturnCompleteScreen());
-                },
-                child: _cardModel('Return Complete', "11","assets/images/returncomplete.png",cardWidth)),
-            // const SizedBox(width: 16,),
-
-            GestureDetector(
-                onTap: (){
-                  // Get.to(()=>ParcelListPage());
-                },
-                child: _cardModel( 'Payment in Progress', "0","assets/images/pendingamout.png",cardWidth)),
-            // const SizedBox(width: 12,),
-
-          ],
-        ),
-
-        const SizedBox(height: 20,),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            GestureDetector(
-                onTap: (){
-                  // Get.to(()=>ParcelListPage());
-                },
-                child: _cardModel( 'Total Collect Amount', "31,551","assets/images/totalcollectamount.png",cardWidth2)),
-
-            // const SizedBox(width: 16,),
-            GestureDetector(
-                onTap: (){
-                  Get.to(()=>const TotalPaymentScreen());
-                },
-                child: _cardModel( 'Total Paid Amount', "20,532","assets/images/cashondelivery.png",cardWidth2)),
-            // const SizedBox(width: 12,),
-
-          ],
-        ),
-        const SizedBox(height: 12,),
-        // Add more widget boxes as needed
-      ],
+                  child: _cardModel('Total Parcel', "608","assets/images/totalpearcel.png",cardWidth)
+              ),
+              // const SizedBox(width: 16,),
+      
+              GestureDetector(
+                  onTap: (){
+                    Get.to(()=>const CanceledParcelScreen());
+                  },
+                  child: _cardModel('Cancel Parcel', "4","assets/images/cancelled.png",cardWidth)
+              ),
+              // const SizedBox(width: 16,),
+      
+              GestureDetector(
+                  onTap: (){
+                    Get.to(()=> PendingPickupScreen());
+                  },
+                  child: _cardModel('Pending Pickup', "5","assets/images/waitingpickup.png",cardWidth)),
+              // const SizedBox(width: 12,),
+      
+            ],
+          ),
+      
+          const SizedBox(
+            height: 20,
+          ),
+      
+          //2nd Tow Segments
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                  onTap: (){
+                    Get.to(()=>const PendingDeliveryScreen());
+                  },
+                  child: _cardModel( 'Pending Delivery', "558","assets/images/waitingpickup1.png",cardWidth)),
+              // const SizedBox(width: 16,),
+      
+              GestureDetector(
+                  onTap: (){
+                    Get.to(()=>const DeliveryCompleteScreen());
+                  },
+                  child: _cardModel( 'Delivery Complete', "41","assets/images/deliverycomplete.png",cardWidth)),
+              // const SizedBox(width: 16,),
+      
+              GestureDetector(
+                  onTap: (){
+                    Get.to(()=>PaymentCompleteScreen());
+                  },
+                  child: _cardModel( 'Payment Complete', "21","assets/images/paymentcomplete.png",cardWidth)),
+              // const SizedBox(width: 12,),
+      
+            ],
+          ),
+      
+          const SizedBox(
+            height: 20,
+          ),
+      //3ed Tow Segments
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                  onTap: (){
+                    Get.to(()=>const ReturnParcelScreen());
+                  },
+                  child: _cardModel('Return Parcel', "10","assets/images/returnparcel.png",cardWidth)),
+              // const SizedBox(width: 16,),
+      
+              GestureDetector(
+                  onTap: (){
+                    Get.to(()=>const ReturnCompleteScreen());
+                  },
+                  child: _cardModel('Return Complete', "11","assets/images/returncomplete.png",cardWidth)),
+              // const SizedBox(width: 16,),
+      
+              GestureDetector(
+                  onTap: (){
+                    // Get.to(()=>ParcelListPage());
+                  },
+                  child: _cardModel( 'Payment in Progress', "0","assets/images/pendingamout.png",cardWidth)),
+              // const SizedBox(width: 12,),
+      
+            ],
+          ),
+      
+          const SizedBox(height: 20,),
+      
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                  onTap: (){
+                    // Get.to(()=>ParcelListPage());
+                  },
+                  child: _cardModel( 'Total Collect Amount', "31,551","assets/images/totalcollectamount.png",cardWidth2)),
+      
+              // const SizedBox(width: 16,),
+              GestureDetector(
+                  onTap: (){
+                    Get.to(()=>const TotalPaymentScreen());
+                  },
+                  child: _cardModel( 'Total Paid Amount', "20,532","assets/images/cashondelivery.png",cardWidth2)),
+              // const SizedBox(width: 12,),
+      
+            ],
+          ),
+          const SizedBox(height: 12,),
+          // Add more widget boxes as needed
+        ],
+      ),
     );
   }
 
   Widget _cardModel(String operation, String number,String iconPath, double width){
-    return Flexible(
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          elevation: 6,
-          child: Container(
-            height: 150,
-            width: width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.blue.withOpacity(0.3),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.2)],
-                  ),
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      elevation: 6,
+      child: Container(
+        height: 150,
+        width: width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Colors.blue.withOpacity(0.3),Colors.blueAccent.withOpacity(0.5), Colors.blue.withOpacity(0.2)],
+              ),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 8,
+        ),
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 40, // Fixed height for the image
+              width: 40, // Fixed width for the image
+              child: Image.asset(iconPath),
             ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: 8,
+            Text(
+              operation,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(height: 3),
+            Text(
+              number,
+              style: const TextStyle(
+                fontSize: 22,
+                // fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
 
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 40, // Fixed height for the image
-                  width: 40, // Fixed width for the image
-                  child: Image.asset(iconPath),
-                ),
-                Text(
-                  operation,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(height: 3),
-                Text(
-                  number,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    // fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-
-              ],
-            ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    );
   }
 
   void _handleMenuButtonPressed() {
