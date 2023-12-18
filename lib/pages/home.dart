@@ -66,110 +66,110 @@ class _HomePage extends State<HomePage> {
           borderRadius: const BorderRadius.all(Radius.circular(16)),
         ),
         drawer: SafeArea(
-          child: Container(
-            child: ListTileTheme(
-              textColor: Colors.white,
-              iconColor: Colors.white,
-              child: ListView(
-                // physics: AlwaysScrollableScrollPhysics(),
-                children: [
-                  Container(
-                    width: 100.0,
-                    height: 100.0,
-                    margin: const EdgeInsets.only(
-                      top: 18.0,
-                      bottom: 18.0,
-                    ),
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                    ),
+          child: ListTileTheme(
+            textColor: Colors.white,
+            iconColor: Colors.white,
+            child: ListView(
+              // physics: AlwaysScrollableScrollPhysics(),
+              children: [
+                Container(
+                  width: 100.0,
+                  height: 100.0,
+                  margin: const EdgeInsets.only(
+                    top: 18.0,
+                    bottom: 18.0,
                   ),
-                  ListTile(
-                    onTap: () {
-                    },
-                    leading: Image.asset("assets/images/home.png",scale: 18,),
-                    title: const Text('Home', style: TextStyle(color: Colors.black),),
-                    tileColor: Colors.blue,
+                  child: Image.asset(
+                    'assets/images/logo.png',
                   ),
-                  const Divider(color: Colors.grey,),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const AddParcelPage());
-                    },
-                    leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
-                    title: const Text('Add Parcel',),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const ParcelListPage());
-                    },
-                    leading: Image.asset("assets/images/total_parcel_drawer.png",scale: 8,),
-                    title: const Text('Parcel List'),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const OrderTrackingPage());
-                    },
-                    leading: Image.asset("assets/images/waitingdelivery.png",scale: 6,),
-                    title: const Text('Order Tracking'),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const CoverageAreaPage());
-                    },
-                    leading: Image.asset("assets/images/coverage.png",scale: 8,),
-                    title: const Text('Coverage Area'),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const PaymentRequestListPage());
-                    },
-                    leading: Image.asset("assets/images/payment.png",scale: 8,),
-                    title: const Text('Payment Request List'),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const PaymentListPage());
-                    },
-                    leading: Image.asset("assets/images/payment.png",scale: 8,),
-                    title: const Text('Payment List'),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const PickupParcelListPage());
-                    },
-                    leading: Image.asset("assets/images/pickup.png",scale: 8,),
-                    title: const Text('Pickup Parcel List'),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const ReturnParcelListPage());
-                    },
-                    leading: Image.asset("assets/images/returnnev.png",scale: 8,),
-                    title: const Text('Return Parcel List'),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const DeliveryListPage());
-                    },
-                    leading: Image.asset("assets/images/complete.png",scale: 8,),
-                    title: const Text('Delivery List'),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.off(() => const SupportPage());
-                    },
-                    leading: Image.asset("assets/images/support.png",scale: 8,),
-                    title: const Text('Support'),
-                  ),
-                  Divider(color: Colors.grey.shade600,),
-                  ListTile(
-                    onTap: () {},
-                    leading: Image.asset("assets/images/logout.png",scale: 8,),
-                    title: const Text('Logout',style: TextStyle(color: Colors.black)),
-                  ),
-                  const Spacer(),
-                  DefaultTextStyle(
+                ),
+                ListTile(
+                  onTap: () {
+                  },
+                  leading: Image.asset("assets/images/home.png",scale: 18,),
+                  title: const Text('Home', style: TextStyle(color: Colors.black),),
+                  tileColor: Colors.blue,
+                ),
+                const Divider(color: Colors.grey,),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const AddParcelPage());
+                  },
+                  leading: Image.asset("assets/images/add_parcel_drawer.png",scale: 8,),
+                  title: const Text('Add Parcel',),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const ParcelListPage());
+                  },
+                  leading: Image.asset("assets/images/total_parcel_drawer.png",scale: 8,),
+                  title: const Text('Parcel List'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const OrderTrackingPage());
+                  },
+                  leading: Image.asset("assets/images/waitingdelivery.png",scale: 6,),
+                  title: const Text('Order Tracking'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const CoverageAreaPage());
+                  },
+                  leading: Image.asset("assets/images/coverage.png",scale: 8,),
+                  title: const Text('Coverage Area'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const PaymentRequestListPage());
+                  },
+                  leading: Image.asset("assets/images/payment.png",scale: 8,),
+                  title: const Text('Payment Request List'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const PaymentListPage());
+                  },
+                  leading: Image.asset("assets/images/payment.png",scale: 8,),
+                  title: const Text('Payment List'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const PickupParcelListPage());
+                  },
+                  leading: Image.asset("assets/images/pickup.png",scale: 8,),
+                  title: const Text('Pickup Parcel List'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const ReturnParcelListPage());
+                  },
+                  leading: Image.asset("assets/images/returnnev.png",scale: 8,),
+                  title: const Text('Return Parcel List'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const DeliveryListPage());
+                  },
+                  leading: Image.asset("assets/images/complete.png",scale: 8,),
+                  title: const Text('Delivery List'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.off(() => const SupportPage());
+                  },
+                  leading: Image.asset("assets/images/support.png",scale: 8,),
+                  title: const Text('Support'),
+                ),
+                Divider(color: Colors.grey.shade600,),
+                ListTile(
+                  onTap: () {},
+                  leading: Image.asset("assets/images/logout.png",scale: 8,),
+                  title: const Text('Logout',style: TextStyle(color: Colors.black)),
+                ),
+                SizedBox(
+                  height: 50,
+                  child: DefaultTextStyle(
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.white54,
@@ -182,8 +182,8 @@ class _HomePage extends State<HomePage> {
                       child: const Text('Terms of Service | Privacy Policy'),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
