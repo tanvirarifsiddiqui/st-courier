@@ -282,20 +282,74 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
               padding: const EdgeInsets.only(top: 15.0,left: 10,right: 10),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      _buildDateField(
-                        'From Date',
-                        fromDate,
-                        true,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12, // Shadow color
+                            spreadRadius: 2, // Spread radius
+                            blurRadius: 5, // Blur radius
+                            offset: Offset(0, 3), // Offset
+                          ),
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF8B69FF), Color(0xD0165985)],
+                          begin: Alignment.bottomLeft,
+                          end: Alignment.topRight,
+                        ),
                       ),
-                      const SizedBox(width: 10.0),
-                      _buildDateField(
-                        'To Date',
-                        toDate,
-                        false,
+                      child: ExpansionTile(
+                        collapsedIconColor: Colors.white,
+                        iconColor: Colors.white,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        leading: const Icon(Icons.filter_list, color: Colors.white),
+                        title: const Center(
+                          child: Text(
+                            'Filter',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                        ),
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(color: Colors.purple.shade50),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  // A row to select the from date and the to date
+                                  Row(
+                                    children: [
+                                      _buildDateField(
+                                        'From Date',
+                                        fromDate,
+                                        true,
+                                      ),
+                                      const SizedBox(width: 10.0),
+                                      _buildDateField(
+                                        'To Date',
+                                        toDate,
+                                        false,
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                   const SizedBox(height: 5.0),
                   Expanded(
