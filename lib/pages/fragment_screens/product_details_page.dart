@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:st_courier/Models/parcel_details_model.dart';
 import 'package:st_courier/Models/parcel_list_model.dart';
 import 'package:st_courier/Models/payment_model.dart';
-import 'package:st_courier/objects/parcel_details_objects.dart';
 import 'package:st_courier/objects/parcel_objects.dart';
 import 'package:st_courier/objects/payment_objects.dart';
 
@@ -19,7 +17,7 @@ class ProductDetailScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Coverage Area'),
+          title: const Text('Product Details'),
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -72,7 +70,6 @@ class ProductDetailScreen extends StatelessWidget {
                                 Text(
                                   _currentParcel.invoiceId,
                                   style: const TextStyle(
-                                    fontSize: 16,
                                       color: Colors.green),
                                 ),
                               ],
