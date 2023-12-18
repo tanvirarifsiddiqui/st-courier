@@ -27,7 +27,6 @@ class ProfilePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Profile Container
               Container(
@@ -243,6 +242,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.0),
+              // Profile Information
 
               // Pickup Information
               Card(
@@ -285,11 +285,9 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Flexible(
-                                child: Text(
-                                  'Level-2, 25/2 Lake Circus Rd, Dhaka 1205',
-                                  style: TextStyle(fontSize: 14.0),
-                                ),
+                              Text(
+                                'Level-2, 25/2 Lake Circus Rd, Dhaka 1205',
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -358,19 +356,15 @@ class ProfilePage extends StatelessWidget {
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
-                                  Flexible(
-                                    child: Text(
-                                      'Bank Account Number',
-                                      style: TextStyle(fontSize: 14.0),
-                                    ),
+                                  Text(
+                                    'Bank Account Number',
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
-                              Flexible(
-                                child: Text(
-                                  ': 에릭이',
-                                  style: TextStyle(fontSize: 14.0),
-                                ),
+                              Text(
+                                ': 에릭이',
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -384,11 +378,9 @@ class ProfilePage extends StatelessWidget {
                                     color: Color(0xFF8B69FF),
                                   ),
                                   SizedBox(width: 10.0),
-                                  Flexible(
-                                    child: Text(
-                                      'Bank Account Name',
-                                      style: TextStyle(fontSize: 14.0),
-                                    ),
+                                  Text(
+                                    'Bank Account Name',
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                 ],
                               ),
