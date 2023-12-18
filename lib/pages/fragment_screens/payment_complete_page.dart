@@ -7,15 +7,88 @@ import '../../Models/card_row_model.dart';
 import '../../Models/parcel_list_model.dart';
 import '../../objects/parcel_objects.dart';
 
-class PaymentCompleteScreen extends StatelessWidget {
+class PaymentCompleteScreen extends StatefulWidget {
   const PaymentCompleteScreen({super.key});
 
+  @override
+  State<PaymentCompleteScreen> createState() => _PaymentCompleteScreenState();
+}
+
+class _PaymentCompleteScreenState extends State<PaymentCompleteScreen> {
+  // A variable to store the from date filter
+  DateTime? fromDate;
+
+  // A variable to store the to date filter
+  DateTime? toDate;
+
+  // A function to show Form and date picker dialog
+  Widget _buildDateField(String labelText, DateTime? dateValue, bool isFrom) {
+    return Expanded(
+      child: TextFormField(
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: const TextStyle(color: Colors.deepPurple),
+          border: const OutlineInputBorder(),
+          prefixIcon: Icon(Icons.calendar_month,
+              size: 24, color: Colors.deepPurple.shade300),
+        ),
+        style: const TextStyle(color: Colors.deepPurple),
+        controller: TextEditingController(
+          text: dateValue == null
+              ? ''
+              : '${dateValue.day}/${dateValue.month}/${dateValue.year}',
+        ),
+        onTap: () async {
+          // This will prevent the keyboard from appearing when tapping the text field
+          FocusScope.of(context).requestFocus(new FocusNode());
+          // Your existing logic here...
+          final selectedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2000),
+            lastDate: DateTime.now(),
+          );
+          if (selectedDate != null) {
+            setState(() {
+              if (isFrom) {
+                fromDate = selectedDate;
+              } else {
+                toDate = selectedDate;
+              }
+            });
+          }
+        },
+      ),
+    );
+  }
+
+  // A function to apply the filters and return a filtered list of parcels
+  List<Parcel> _applyFilters() {
+    List<Parcel> filteredParcels = parcels;
+    if (fromDate == null || toDate == null) {
+      filteredParcels = filteredParcels
+          .where((parcel) => parcel.status == "Return Completed")
+          .toList();
+    }
+    if (fromDate != null) {
+      filteredParcels = filteredParcels
+          .where((parcel) => DateTime.parse(parcel.invoiceId.substring(0, 8))
+          .isAfter(fromDate!))
+          .toList();
+    }
+    if (toDate != null) {
+      filteredParcels = filteredParcels
+          .where((parcel) => DateTime.parse(parcel.invoiceId.substring(0, 8))
+          .isBefore(toDate!))
+          .toList();
+    }
+    return filteredParcels;
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<Parcel> _canceledParcels = parcels
-        .where((parcel) => parcel.status == "Payment Done")
-        .toList();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Payment Complete Parcel'),
@@ -30,15 +103,85 @@ class PaymentCompleteScreen extends StatelessWidget {
           ),
         ),
         body: Container(
-          padding: const EdgeInsets.only(top: 15.0,left: 10,right: 10),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              const SizedBox(height: 5.0),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12, // Shadow color
+                        spreadRadius: 2, // Spread radius
+                        blurRadius: 5, // Blur radius
+                        offset: Offset(0, 3), // Offset
+                      ),
+                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF8B69FF), Color(0xD0165985)],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topRight,
+                    ),
+                  ),
+                  child: ExpansionTile(
+                    collapsedIconColor: Colors.white,
+                    iconColor: Colors.white,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    leading: const Icon(Icons.filter_list, color: Colors.white),
+                    title: const Center(
+                      child: Text(
+                        'Filter',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(color: Colors.purple.shade50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              // A row to select the from date and the to date
+                              Row(
+                                children: [
+                                  _buildDateField(
+                                    'From Date',
+                                    fromDate,
+                                    true,
+                                  ),
+                                  const SizedBox(width: 10.0),
+                                  _buildDateField(
+                                    'To Date',
+                                    toDate,
+                                    false,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+
+              // A list view to display the filtered parcels
               Expanded(
                 child: ListView.builder(
-                  itemCount: _canceledParcels.length,
+                  itemCount: _applyFilters().length,
                   itemBuilder: (context, index) {
-                    final parcel = _canceledParcels[index];
+                    final parcel = _applyFilters()[index];
                     return GestureDetector(
                         onTap: () {
                           Get.to(()=>ParcelDetailScreen(index: index));
@@ -140,6 +283,7 @@ class PaymentCompleteScreen extends StatelessWidget {
                                     "${parcel.charge}", Icons.attach_money),
                                 buildCardRow("Total Collection Amount:",
                                     "${parcel.amount}", Icons.calculate),
+
                                 const Row(
                                   children: [
                                     Icon(Icons.assignment, color: Color(0xFF8B69FF)),
@@ -149,7 +293,7 @@ class PaymentCompleteScreen extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Flexible(child: Text(parcel.brief,)),
+                                  child: Text(parcel.brief,),
                                 ),
 
                                 // Container at the bottom with dynamic design
@@ -192,10 +336,9 @@ class PaymentCompleteScreen extends StatelessWidget {
                   },
                 ),
               ),
-
             ],
           ),
-        )
+        ),
     );
   }
 }
