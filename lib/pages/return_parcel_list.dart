@@ -27,6 +27,9 @@ class ReturnParcelListPage extends StatefulWidget {
 class _ReturnParcelListPage extends State<ReturnParcelListPage>{
   final _advancedDrawerController = AdvancedDrawerController();
 
+  // A variable to store the selected parcel status
+  String selectedStatus = 'All';
+
   // A variable to store the from date filter
   DateTime? fromDate;
 
@@ -77,22 +80,25 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
 
   // A function to apply the filters and return a filtered list of parcels
   List<Parcel> _applyFilters() {
-    List<Parcel> returnedParcels = parcels
-        .where((parcel) => parcel.status == "Return Completed")
-        .toList();
+    List<Parcel> filteredParcels = parcels;
+    if (fromDate == null || toDate == null) {
+      filteredParcels = filteredParcels
+          .where((parcel) => parcel.status == "Return Completed")
+          .toList();
+    }
     if (fromDate != null) {
-      returnedParcels = returnedParcels
+      filteredParcels = filteredParcels
           .where((parcel) => DateTime.parse(parcel.invoiceId.substring(0, 8))
           .isAfter(fromDate!))
           .toList();
     }
     if (toDate != null) {
-      returnedParcels = returnedParcels
+      filteredParcels = filteredParcels
           .where((parcel) => DateTime.parse(parcel.invoiceId.substring(0, 8))
           .isBefore(toDate!))
           .toList();
     }
-    return returnedParcels;
+    return filteredParcels;
   }
 
   @override
@@ -279,7 +285,7 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
               ),
             ),
             body: Container(
-              padding: const EdgeInsets.only(top: 15.0,left: 10,right: 10),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 children: [
                   Padding(
@@ -351,7 +357,8 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                       ),
                     ),
                   ),
-                  const SizedBox(height: 5.0),
+
+                  // A list view to display the filtered parcels
                   Expanded(
                     child: ListView.builder(
                       itemCount: _applyFilters().length,
@@ -457,7 +464,8 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                                     buildCardRow("Total Charge:",
                                         "${parcel.charge}", Icons.attach_money),
                                     buildCardRow("Total Collection Amount:",
-                                        "${parcel.amount}", Icons.money),
+                                        "${parcel.amount}", Icons.calculate),
+
                                     const Row(
                                       children: [
                                         Icon(Icons.assignment, color: Color(0xFF8B69FF)),
@@ -467,7 +475,7 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Flexible(child: Text(parcel.brief,)),
+                                      child: Text(parcel.brief,),
                                     ),
 
                                     // Container at the bottom with dynamic design
@@ -475,15 +483,11 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                                       margin: const EdgeInsets.only(top: 16.0),
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        gradient: const LinearGradient(
-                                          colors: [Color(0xff6e44a8), Color(0xff006280), Color(0xff167091)],
-                                          begin: Alignment.bottomLeft,
-                                          end: Alignment.topRight,
-                                        ),
+                                        gradient: _getGradientForStatus(parcel.status),
                                         borderRadius: BorderRadius.circular(8.0),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.cyanAccent.withOpacity(0.8),
+                                            color: _getShadowColorForStatus(parcel.status),
                                             blurRadius: 5.0,
                                             spreadRadius: 2.0,
                                           ),
@@ -510,14 +514,88 @@ class _ReturnParcelListPage extends State<ReturnParcelListPage>{
                       },
                     ),
                   ),
-
                 ],
               ),
-            )
+            ),
         )
     );
   }
 
+  LinearGradient _getGradientForStatus(String status) {
+    switch (status) {
+      case 'Delivery Completed':
+        return LinearGradient(
+          colors: [Color(0xff6e44a8), Color(0xff1e7e6c), Color(0xff0b8371),],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Delivery Processing':
+        return LinearGradient(
+          colors: [Color(0xff6e44a8), Color(0xffce5300), Color(0xffd28800)],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Delivery Cancelled':
+        return LinearGradient(
+          colors: [Color(0xff6e44a8), Color(0xffa60b2f),Color(0xffd70032),],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Payment Done':
+        return LinearGradient(
+          colors: [Color(0xff6e44a8),Color(0xff0e800e), Color(0xff00cc00)],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Payment Pending':
+        return LinearGradient(
+          colors: [Color(0xff6e44a8), Color(0xffc0a40e), Color(0xffd7b900)],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Return Completed':
+        return LinearGradient(
+          colors: [Color(0xff6e44a8), Color(0xff006280), Color(0xff167091)],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+      case 'Pickup Request':
+        return LinearGradient(
+          colors: [Color(0xff6e44a8), Color(0xff3a4aff), Color(0xff2b69e1)],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+    // Add other cases for different statuses with their respective gradients
+      default:
+        return LinearGradient(
+          colors: [Colors.grey, Color(0xE80A0A0A)],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+    }
+  }
+
+  Color _getShadowColorForStatus(String status) {
+    switch (status) {
+      case 'Delivery Completed':
+        return Colors.greenAccent.shade400.withOpacity(0.8);
+      case 'Delivery Processing':
+        return Colors.amber.shade700.withOpacity(0.8);
+      case 'Delivery Cancelled':
+        return Colors.redAccent.shade400.withOpacity(0.8);
+      case 'Payment Done':
+        return Colors.lightGreenAccent.shade400.withOpacity(0.8);
+      case 'Payment Pending':
+        return Colors.yellowAccent.shade400.withOpacity(0.8);
+      case 'Return Completed':
+        return Colors.cyanAccent.withOpacity(0.8);
+      case 'Pickup Request':
+        return Colors.blueAccent.shade400.withOpacity(0.8);
+
+      default:
+        return Colors.grey.shade400.withOpacity(0.8);
+    }
+  }
   void _handleMenuButtonPressed() {
     // NOTICE: Manage Advanced Drawer state through the Controller.
     // _advancedDrawerController.value = AdvancedDrawerValue.visible();
