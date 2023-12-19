@@ -160,6 +160,28 @@ class _PaymentRequestListPage extends State<PaymentRequestListPage>{
                 ),
                 SizedBox(
                   height: 50,
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.s,
+                    children: [
+                      DefaultTextStyle(
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.white70,
+                        ),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 16.0,
+                              horizontal: 16
+                          ),
+                          child: const Text('Developed By'),
+                        ),
+                      ),
+                      Image(image: AssetImage('assets/images/stitbd.png'),width: 60,)
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
                   child: DefaultTextStyle(
                     style: const TextStyle(
                       fontSize: 12,
